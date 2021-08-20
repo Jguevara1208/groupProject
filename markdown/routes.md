@@ -39,36 +39,55 @@
 <br>
 <br>
 
-## User Routes
-### Route - `/users`
-User home page - '/' - GET
-User stories list - '/my-stories' - GET
-Story Edit - '/my-stories/:id/edit' - GET
-Story Edit '/my-stories/:id/edit' - POST
-New Story - '/my-stories/new' - GET
-New Story - '/my-stories/new' - POST
+# User Routes
+## Route - `/users`
+- ### User Home Page
+	- This page allows users to view their own profile and stories.
+		- **`GET`** - `'/'`
 
-Other User Profile Page '/:id' - GET
-Follow other user '/:id/follow' - POST
+<br>
+
+- ### Another User's Page
+	- This page show another user's profile page, and follow that user.
+		- **`GET`** - `'/:id'`
+		- **`POST`** - `'/:id/follow'`
+
+<br>
+
+
+- This page allows users to view/create/update/delete their stories.
+	- **`GET`** - `'/my-stories'`
+	- **`GET`** - `'/my-stories/:id/edit'`
+	- **`POST`** - `'/my-stories/:id/edit'`
+	- **`GET`** - `'/my-stories/new'`
+	- **`POST`** - `'/my-stories/new'`
 
 
 <br>
 <br>
 
-## Stories
-### Route - `/stories`
+# Stories
+## Route - `/stories`
 
-Story Page - '/:id' - GET
+- ### Story Page
+    - This page shows all stories.
+		- **`GET`** - `'/:id'`
 
 <br>
 <br>
 
-## Topics
-### Route - `/topics`
+# Topics
+## Route - `/topics`
 
-Topics list page - '/' - GET
-Follow topic page - '/:id/like' - POST
-Specific Topic list - '/:id' - GET
+- ### Topics list page
+	- This page shows all the topics.
+		- **`GET`** - `'/'`
+- ### Topics follow page
+	- This page will let you follow a topic.
+		- **`POST`** - `'/:id/like'`
+- ### Topics specific page
+	- This page will show a specific topic
+		- **`GET`** - `'/:id'`
 
 <br>
 <br>
