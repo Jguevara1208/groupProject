@@ -89,18 +89,4 @@
 	- This page will show a specific topic
 		- **`GET`** - `'/:id'`
 
-<br>
-<br>
 
-
-
-
-STORY PAGE
-
-TOPICS LIST PAGE
-
-USER PROFILE PAGE
-
-OTHER PROFILE PAGE
-
-SPECIFIC TOPICS PAGE
