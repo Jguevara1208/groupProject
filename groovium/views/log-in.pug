@@ -1,0 +1,19 @@
+extends index
+
+doctype html
+html(lang="en")
+  head
+    title Log-in
+  body
+    h1 Welcome Back.
+        div(class='Sign in form')
+            label(for=signIn)= labelText
+            label(for=email)= labelText
+            input(type=fieldType id=email name=email value=fieldValue class='form-control')
+            label(for=password)= labelText
+            input(type=fieldType id=password name=password value=fieldValue class='form-control')
+            label(for=confirmPassword)= labelText
+            input(type=fieldType id=confirmPassword name=confirmPassword value=fieldValue class='form-control')
+            button(type='submit' class='btn-primary')
+            p 'No account?' #[a(href="/sign-up")= Create one]  --may need to change url path
+            p 'Click "sign in" to agree to Groovium/'s #[a(href="/Term's-of-Service")= "Term's of Service"] and acknowledge that Groovium's #[a(href="/Privacy_Policy")= "Privacy Policy"] applies to you.'
