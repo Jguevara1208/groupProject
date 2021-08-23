@@ -1,9 +1,9 @@
 var express = require('express');
 const { User } = require('../db/models');
-var router = express.Router();
 const bcrypt = require('bcryptjs');
-const {asyncHandler} = require('../utils');
+const { asyncHandler } = require('../utils');
 
+var router = express.Router();
 
 
 /* GET home page. */
@@ -13,16 +13,25 @@ router.get('/', function(req, res, next) {
 
 router.get('/sign-up', (req, res) => {
   //TODO:
+  const user = res.locals.user
 
-  res.render('sign-up');
+  res.render('sign-up', { user });
 });
 
 router.post('/sign-up', asyncHandler(async(req, res) => {
   const { firstName, lastName, email, password, avatarUrl, shortBio } = req.body;
+
   const hashedPassword = await bcrypt.hash(password, 10);
+
   const user = await User.create({
-    firstName, lastName, email, hashedPassword, avatarUrl, shortBio
+    firstName,
+    lastName,
+    email,
+    hashedPassword,
+    avatarUrl,
+    shortBio
    });
+
   res.redirect('/users');
 }));
 

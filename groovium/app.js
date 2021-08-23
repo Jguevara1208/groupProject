@@ -11,12 +11,14 @@ const bookmarksRouter = require('./routes/bookmarks');
 const storiesRouter = require('./routes/stories');
 const topicsRouter = require('./routes/topics');
 const usersRouter = require('./routes/users');
+const { restoreUser } = require('./auth')
 
 const app = express();
 
 // view engine setup
 app.set('view engine', 'pug');
 
+app.use(restoreUser)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
