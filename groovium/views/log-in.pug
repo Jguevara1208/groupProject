@@ -1,0 +1,15 @@
+block head
+  body
+    h1 Welcome Back.
+        div
+            form(action="/log-in" method='POST')
+                p Sign in
+                label(for="email") Email
+                input(type="email" name="email" value=fieldValue)
+                label(for="password") Password
+                input(type="password" name="password" value=fieldValue )
+                label(for="confirmPassword") Confirm Password
+                input(type="password" name="confirmPassword" value=fieldValue)
+                button(type='submit')
+                p No account?
+                    span: a(href='/sign-up') Create one
