@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       through: 'Bookmark',
       foreignKey: 'userId',
       otherKey: 'storyId',
+      as: 'usersBookmarks'
     }
 
     const likesColumnMapping = {
@@ -28,7 +29,22 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'topicId',
     }
 
-    //TODO: add a belongsToMany
+    const followingColumnMapping = {
+      through: 'Follow',
+      foreignKey: 'userId',
+      otherKey: 'followerId',
+      as: 'following'
+    }
+
+    const followerColumnMapping = {
+      through: 'Follow',
+      foriegnKey: 'followerId',
+      otherKey: 'userId',
+      as: 'follower'
+    }
+
+    User.belongsToMany( models.User, followingColumnMapping)
+    User.belongsToMany( models.User, followerColumnMapping)
 
     User.belongsToMany( models.Topic, likedTopicColumnMapping)
     User.belongsToMany( models.Story, likesColumnMapping)
