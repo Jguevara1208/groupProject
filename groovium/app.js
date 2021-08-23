@@ -16,16 +16,6 @@ const { restoreUser } = require('./auth')
 const app = express();
 
 // view engine setup
-app.set('view engine', 'pug');
-
-app.use(restoreUser)
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-// set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
 app.use(
@@ -36,6 +26,16 @@ app.use(
     resave: false,
   })
 );
+app.set('view engine', 'pug');
+
+app.use(restoreUser)
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// set up session middleware
 
 // create Session table if it doesn't already exist
 store.sync();

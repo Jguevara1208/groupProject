@@ -7,16 +7,16 @@ var router = express.Router();
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', asyncHandler( async (req, res, next) => {
   res.render('index', { title: 'a/A Express Skeleton Home' });
-});
+}));
 
-router.get('/sign-up', (req, res) => {
+router.get('/sign-up', asyncHandler(async (req, res) => {
   //TODO:
   const user = res.locals.user
 
   res.render('sign-up', { user });
-});
+}));
 
 router.post('/sign-up', asyncHandler(async(req, res) => {
   const { firstName, lastName, email, password, avatarUrl, shortBio } = req.body;

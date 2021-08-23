@@ -29,7 +29,8 @@ const restoreUser = async (req, res, next) => {
         res.locals.user = user;
         next();
       } else {
-        throw new Error("User could not be found")
+        error = new Error("User could not be found")
+        return error
       }
     } catch (err) {
       res.locals.authenticated = false;
