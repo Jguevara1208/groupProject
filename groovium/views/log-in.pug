@@ -1,15 +1,15 @@
-block head
-  body
-    h1 Welcome Back.
-        div
-            form(action="/log-in" method='POST')
-                p Sign in
-                label(for="email") Email
-                input(type="email" name="email")
-                label(for="password") Password
-                input(type="password" name="password" )
-                label(for="confirmPassword") Confirm Password
-                input(type="password" name="confirmPassword" )
-                button(type='submit')
-                p No account?
-                    span: a(href='/sign-up') Create one
+extends index.pug 
+block content
+  h1 Welcome Back.
+  div
+    form(action="/log-in" method='POST')
+        p Sign in
+        label(for="email") Email
+        input(type="email" name="email")
+        label(for="password") Password
+        input(type="password" name="password" )
+        label(for="confirmPassword") Confirm Password
+        input(type="password" name="confirmPassword" )
+        button(type='submit') Log In
+        p No account?
+            span: a(href='/sign-up') Create one
