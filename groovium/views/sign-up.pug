@@ -1,27 +1,33 @@
-extends index.pug
+html(lang="en")
+    head
+    block head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style: include ../public/stylesheets/index.css
+        script: include ../public/javascripts/index.js
+        title Groovium
+    body
+        div
+            //- image
+            h2 Welcome!
+        form(action="/sign-up" method="POST")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            label(for="firstName") First Name
+            input(type="text" name="firstName" value=firstName)
+            label(for="lastName") Last Name
+            input(type="text" name="lastName" value=lastName)
+            label(for="email") Email Address
+            input(type="email" name="email" value=email)
+            label(for="avatarUrl") Avatar Image
+            input(type="text" name="avatarUrl" value=avatarUrl)
+            label(for="shortBio") Short Bio
+            textarea(name="shortBio" value=shortBio)
+            label(for="password") Password
+            input(type="password" name="password")
+            label(for="confirmedPassword") Confirm Password
+            input(type="password" name="confirmedPassword")
 
-block content
-
-    div
-        //- image
-        h2 Welcome!
-    form(action="/sign-up" method="POST")
-        input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="firstName") First Name
-        input(type="text" name="firstName" value=firstName)
-        label(for="lastName") Last Name
-        input(type="text" name="lastName" value=lastName)
-        label(for="email") Email Address
-        input(type="email" name="email" value=email)
-        label(for="avatarUrl") Avatar Image
-        input(type="text" name="avatarUrl" value=avatarUrl)
-        label(for="shortBio") Short Bio
-        textarea(name="shortBio" value=shortBio)
-        label(for="password") Password
-        input(type="password" name="password")
-        label(for="confirmedPassword") Confirm Password
-        input(type="password" name="confirmedPassword")
-
-        button(type="submit") Sign Up
-        p Already have an account?
-            span: a(href='/log-in') Log In
+            button(type="submit") Sign Up
+            p Already have an account?
+                span: a(href='/log-in') Log In

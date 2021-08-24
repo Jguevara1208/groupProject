@@ -1,16 +1,24 @@
-extends index.pug
 
-block content
-    nav
-        div
-            a(href="/users" src="") LOGO IMAGE
-        if authenticated
-            div
-                a(href="/users/mystories" src="") BOOKMARK IMAGE
-            div
-                a(href="/users/logout") Log out
-        else
-            div
-                a(href="") Log in
-            div
-                a(href="") Get Started
+html(lang="en")
+    head
+    block head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href='https://fonts.googleapis.com/icon?family=Material+Icons')
+        style: include ../public/stylesheets/index.css
+        script: include ../public/javascripts/index.js
+        title Groovium
+    body
+        nav
+            div#logoDiv
+                a(href="/users"): img(src='/logos/logo.png')
+            if authenticated
+                div
+                    a(href="/users/my-stories"): img(id="navBM" src="/logos/bookmark_add_black_24dp 7.png")
+                    a(class="anchorNoUnderline log" href="/users/logout") Log out
+            else
+                div
+                    a(class="anchorNoUnderline log" href="/log-in") Log in
+                    button(id="get-started-button" href="/sign-up") Get Started
+    block content
