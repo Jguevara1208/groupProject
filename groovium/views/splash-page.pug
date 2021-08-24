@@ -18,14 +18,16 @@ block content
                         div.story-container-left
                             div.avatar-and-name
                                 a(href=`/users/${story.userId}`): img(class="splash-avatar-img" src=story.avatarUrl)
-                                p= `${story.firstName} ${story.lastName}`
+                                a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
                             div.story-title
-                                h3= story.title
+                                a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
                             div.story-summary 
                                 p= story.summary
                             div.story-info
                                 div.left-story-info
-                                    p= `${story.date}  ${story.readTimeMinutes} min read`
+                                    p= story.date
+                                    p=  '•'  
+                                    p= `${story.readTimeMinutes} min read`
                                     a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
                                 div.right-story-info 
                                     a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")

@@ -65,10 +65,18 @@
     margin-right: 40px;
 }
 
+.splash-stories-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .splash-avatar-img {
     height:40px;
     width:40px;
     border-radius: 15px;
+    margin-right: 20px;
 }
 
 .splash-story-img {
@@ -78,8 +86,69 @@
 
 .splash-story-topic {
     text-decoration: none;
-    padding: 6px 30px;
     background-color: rgba(242, 216, 197, .5);
+    width:85px;
     border-radius: 15px;
+    height: 25px;
     color: rgba(0, 0, 0, .45);
+    align-self: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+.avatar-and-name {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.story-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-story-info {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* transform: translateX(-20px); */
+}
+
+.splash-bookmark-img {
+    margin-top: 8px;
+}
+
+.story-summary {
+    width: 80%;
+}
+
+.story-summary > p {
+    margin: 5px;
+}
+
+.story-title > a > h3 {
+    margin: 5px;
+    font-size: 20px;
+}
+
+.story-container-left {
+    width: 100%;
+}
+
+.aNoUnderLine {
+    text-decoration: none;
+    color: black
 }

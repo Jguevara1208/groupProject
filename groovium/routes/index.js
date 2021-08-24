@@ -5,7 +5,7 @@ const csrf = require('csurf')
 const csrfProtection = csrf({ cookie: true });
 const { asyncHandler } = require('../utils');
 const { loginValidators, signupValidators, validationResult } = require('./validations')
-const { loginUser, logoutUser, restoreUser } = require('../auth')
+const { loginUser, logoutUser } = require('../auth')
 
 var router = express.Router();
 
@@ -17,10 +17,12 @@ router.get('/', asyncHandler( async (req, res) => {
   })
   const newStories = stories.map(story => {
     const date = story.createdAt
-    const month = date.getMonth()
-    
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const newDate = `${month}-${day}`
 
     return {
+      id: story.id,
       title: story.title,
       userId: story.User.id,
       avatarUrl: story.User.avatarUrl,
