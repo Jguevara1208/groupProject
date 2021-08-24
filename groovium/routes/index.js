@@ -5,7 +5,7 @@ const csrf = require('csurf')
 const csrfProtection = csrf({ cookie: true });
 const { asyncHandler } = require('../utils');
 const { loginValidators, signupValidators, validationResult } = require('./validations')
-const { loginUser } = require('../auth')
+const { loginUser, logoutUser, restoreUser } = require('../auth')
 
 var router = express.Router();
 
@@ -15,8 +15,27 @@ router.get('/', asyncHandler( async (req, res) => {
     include: [User, Topic],
     limit: 6
   })
-  console.log(stories[0].User)
-  res.render('splash-page', { stories });
+  const newStories = stories.map(story => {
+    const date = story.createdAt
+    const month = date.getMonth()
+    
+
+    return {
+      title: story.title,
+      userId: story.User.id,
+      avatarUrl: story.User.avatarUrl,
+      firstName: story.User.firstName,
+      lastName: story.User.lastName,
+      summary: story.summary,
+      date: newDate,
+      readTimeMinutes: story.readTimeMinutes,
+      topicId: story.topicId,
+      topic: story.Topic.topic,
+      storyImgUrl: story.storyImgUrl
+    }
+  })
+
+  res.render('splash-page', { newStories });
 }));
 
 router.get('/sign-up', csrfProtection, asyncHandler(async (req, res) => {
@@ -40,11 +59,10 @@ router.post('/sign-up', csrfProtection, signupValidators, asyncHandler(async(req
 
   const validatorErrors = validationResult(req);
 
-  console.log(validatorErrors);
   if (validatorErrors.isEmpty()) {
     await user.save();
-    console.log('i made it before the redirect')
-    res.redirect('/users');
+    loginUser(req, res, user)
+    return res.redirect('/users');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('sign-up', {
@@ -54,9 +72,6 @@ router.post('/sign-up', csrfProtection, signupValidators, asyncHandler(async(req
     });
   }
 }));
-
-//   res.redirect('/users');
-// }));
 
 
 router.get('/log-in', csrfProtection, asyncHandler(async(req, res) => {
@@ -68,7 +83,6 @@ router.post('/log-in', loginValidators, csrfProtection, loginValidators, asyncHa
 
     let errors = [];
     const validatorErrors = validationResult(req);
-    // console.log(validatorErrors)
     if (validatorErrors.isEmpty()) {
       const user = await User.findOne({ where: { email } });
 
@@ -89,9 +103,9 @@ router.post('/log-in', loginValidators, csrfProtection, loginValidators, asyncHa
 
   }));
 
-  router.post('/logout', (req, res) => { //double check url with team
+  router.get('/logout', (req, res) => {
     logoutUser(req, res);
-    res.redirect('/'); //double check where we want redirect
+    req.session.save(() => res.redirect('/'));
   });
 
 module.exports = router;
