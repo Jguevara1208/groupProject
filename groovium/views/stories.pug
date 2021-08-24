@@ -1,0 +1,34 @@
+extends layout.pug
+block content
+  .outer-most-div-container
+    .title-owner-summary-icons-container
+      .title-and-summary-container
+        h1(id="story-title") !{story.title}
+        h4(id="story-summary") !{story.summary}
+        p(id="story-readtime") !{story.readTimeMinutes} min read
+        a(id="story-topic-link" href=`/topic/${topic.id}`) !{topic.topic}
+      .owner-container
+        .owner-img-div
+          a(href=`/users/${user.id}`)
+            img(id="owner-image" src=`${user.dataValues.avatarUrl}`)
+        .owner-name-div
+          p !{user.dataValues.firstName}
+          p !{user.dataValues.lastName}
+        button(form="?" action="?") Follow
+      .icons-container
+        a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
+    .story-image-and-content-container
+      .story-image-div
+        img(id="story-image" src=`${story.storyImgUrl}`)
+      .story-content-div
+        p !{story.body}
+    .comments-sections-container
+      .comments-container
+        .comments-title-div
+          h3(id="comments-title") Responses
+        .comment-textarea-div
+          textarea(id="comment-textarea")
+        .comment-submit-cancel-buttons-div
+          button(id="cancel-comment-button") Cancel
+          button(id="send-comment-button") Send It
+        .comments-div
