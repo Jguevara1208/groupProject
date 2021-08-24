@@ -16,8 +16,8 @@ block content
                 each story in stories 
                     div.story-container 
                         div.story-container-left
-                            div.img-and-name
-                                img(src=story.User.avatarUrl)
+                            div.avatar-and-name
+                                a(href=`/users/${story.User.id}`): img(class="splash-avatar-img" src=story.User.avatarUrl)
                                 p= `${story.User.firstName} ${story.User.lastName}`
                             div.story-title
                                 h3= story.title
@@ -26,9 +26,9 @@ block content
                             div.story-info
                                 div.left-story-info
                                     p= `${date}  ${story.readTimeMinutes} min read`
-                                    a(href=`/topic/${story.topicId}`)= story.Topic.topic
+                                    a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.Topic.topic
                                 div.right-story-info 
-                                    a(href="/bookmarks")
+                                    a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
                         div.story-container-right 
-                            img(src=story.storyImgUrl)
+                            a(href=`/stories/${story.id}`): img(class="splash-story-img" src=story.storyImgUrl)
             div.splash-topics-div 

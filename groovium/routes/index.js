@@ -15,8 +15,16 @@ router.get('/', asyncHandler( async (req, res) => {
     include: [User, Topic],
     limit: 6
   })
-  console.log(stories[0].User)
+  stories.forEach(story => {
+    let date = story.createdAt
+    console.log(date)
+    // let dateSplit = date.split('T').split('-')
+    // let actualDate = `${dateSplit[1]}-${dateSplit[2]}`
+    // story.createdAt = actualDate
+  })
+  console.log(stories[0].createdAt)
   res.render('splash-page', { stories });
+
 }));
 
 router.get('/sign-up', csrfProtection, asyncHandler(async (req, res) => {
