@@ -1,16 +1,6 @@
 const { check, validationResult } = require("express-validator")
 const loginValidators = [
-  check('firstName')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for First Name')
-    .isLength({ max: 50 })
-    .withMessage('First Name must not be more than 50 characters long'),
-  check('lastName')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Last Name')
-    .isLength({ max: 50 })
-    .withMessage('Last Name must not be more than 50 characters long'),
-  check('emailAddress')
+  check('email')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Email Address')
     .isLength({ max: 255 })
