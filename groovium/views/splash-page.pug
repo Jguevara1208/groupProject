@@ -13,20 +13,20 @@ block content
                 h2 See what's trending on Groovium
                 img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
             div.splash-stories-div 
-                each story in stories 
+                each story in newStories
                     div.story-container 
                         div.story-container-left
                             div.avatar-and-name
-                                a(href=`/users/${story.User.id}`): img(class="splash-avatar-img" src=story.User.avatarUrl)
-                                p= `${story.User.firstName} ${story.User.lastName}`
+                                a(href=`/users/${story.userId}`): img(class="splash-avatar-img" src=story.avatarUrl)
+                                p= `${story.firstName} ${story.lastName}`
                             div.story-title
                                 h3= story.title
                             div.story-summary 
                                 p= story.summary
                             div.story-info
                                 div.left-story-info
-                                    p= `${date}  ${story.readTimeMinutes} min read`
-                                    a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.Topic.topic
+                                    p= `${story.date}  ${story.readTimeMinutes} min read`
+                                    a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
                                 div.right-story-info 
                                     a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
                         div.story-container-right 
