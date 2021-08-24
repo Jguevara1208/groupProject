@@ -11,7 +11,7 @@ var router = express.Router();
 
 
 router.get('/', asyncHandler( async (req, res, next) => {
-  res.render('index', { title: 'a/A Express Skeleton Home' });
+  res.render('splash-page');
 }));
 
 router.get('/sign-up', csrfProtection, asyncHandler(async (req, res) => {

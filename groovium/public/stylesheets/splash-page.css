@@ -1,0 +1,66 @@
+.under-nav {
+    height: 360px;
+    background: linear-gradient(97.13deg, rgba(143, 176, 169, 0.2) 0%, rgba(242, 216, 179, 0.2) 55.56%), linear-gradient(264.16deg, rgba(159, 129, 208, 0.1479) -6.81%, rgba(173, 123, 171, 0.153242) 2.61%, rgba(185, 117, 137, 0.158071) 11.12%, rgba(200, 110, 95, 0.163982) 17.52%, rgba(215, 103, 53, 0.17) 24.05%, rgba(234, 161, 79, 0.17) 30.45%, rgba(251, 210, 102, 0.17) 35.91%, rgba(215, 199, 124, 0.17) 43.71%, rgba(183, 188, 144, 0.17) 50.8%, rgba(143, 176, 169, 0.17) 59.44%);
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.under-nav-text {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width: 315px;
+    height: 245px;
+    margin-left: 240px;
+}
+.under-nav-img {
+    display: flex;
+    align-items: center;
+    margin-right: 130px;
+}
+
+#groovium {
+    font-size: 45px;
+}
+
+#red, #yellow, #green {
+    font-weight: bold;
+}
+#red {
+    color: #D76735;
+}
+
+#yellow {
+    color: #FBD266;
+}
+
+#green {
+    color: #8FB0A9;
+}
+
+#intro-p {
+    font-size: 35px;
+    margin: 10px
+}
+
+#sub-intro-p {
+    font-size: 20px;
+    width: 92%;
+    margin: 0px;
+}
+
+#get-groovy-button {
+    color: white;
+    background-color: FBD266;
+    width: 90px;
+    height: 30px;
+    padding: 10px 27px;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    margin-top: 25px;
+    margin-right: 40px;
+}
