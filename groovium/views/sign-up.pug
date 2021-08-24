@@ -8,26 +8,41 @@ html(lang="en")
         script: include ../public/javascripts/index.js
         title Groovium
     body
-        div
-            //- image
-            h2 Welcome!
-        form(action="/sign-up" method="POST")
-            input(type="hidden" name="_csrf" value=csrfToken)
-            label(for="firstName") First Name
-            input(type="text" name="firstName" value=firstName)
-            label(for="lastName") Last Name
-            input(type="text" name="lastName" value=lastName)
-            label(for="email") Email Address
-            input(type="email" name="email" value=email)
-            label(for="avatarUrl") Avatar Image
-            input(type="text" name="avatarUrl" value=avatarUrl)
-            label(for="shortBio") Short Bio
-            textarea(name="shortBio" value=shortBio)
-            label(for="password") Password
-            input(type="password" name="password")
-            label(for="confirmedPassword") Confirm Password
-            input(type="password" name="confirmedPassword")
-
-            button(type="submit") Sign Up
-            p Already have an account?
-                span: a(href='/log-in') Log In
+        div.form-container-outer
+            div.form-page-side-divs
+                div#logoDiv
+                    a(href="/"): img(id="form-logo" src='/logos/logo.png')
+            div.form-page-center-div
+                div.form-container-inner
+                    img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+                    h2 Welcome
+                    div.form-wrapper 
+                        form(action="/sign-up" method="POST")
+                            input(type="hidden" name="_csrf" value=csrfToken)
+                            div.form-input-div
+                                label(for="firstName") First Name
+                                input(type="text" name="firstName" value=firstName)
+                            div.form-input-div
+                                label(for="lastName") Last Name
+                                input(type="text" name="lastName" value=lastName)
+                            div.form-input-div
+                                label(for="email") Email Address
+                                input(type="email" name="email" value=email)
+                            div.form-input-div
+                                label(for="avatarUrl") Avatar Image
+                                input(type="text" name="avatarUrl" value=avatarUrl)
+                            div.form-input-div
+                                label(for="shortBio") Short Bio
+                                textarea(class="form-text-area" name="shortBio" value=shortBio)
+                            div.form-input-div
+                                label(for="password") Password
+                                input(type="password" name="password")
+                            div.form-input-div
+                                label(for="confirmedPassword") Confirm Password
+                                input(type="password" name="confirmedPassword")
+                            div(class="form-input-button-div")
+                                button(class="form-submit-button" type="submit") Sign Up
+                            div.form-input-div
+                                p Already have an account?
+                                    span: a(class="anchorNoUnderline form-change-anchor" href='/log-in') Log In
+            div.form-page-side-divs
