@@ -65,11 +65,22 @@
     margin-right: 40px;
 }
 
-.splash-stories-div {
+.content-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.splash-stories-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 1400px;
+    height: 886px;
+    row-gap: 0px;
+    column-gap: 60px;
 }
 
 .splash-avatar-img {
