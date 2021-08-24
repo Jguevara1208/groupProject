@@ -20,8 +20,8 @@ router.get('/', asyncHandler( async (req, res) => {
 }));
 
 router.get('/sign-up', csrfProtection, asyncHandler(async (req, res) => {
-  const user = User.build(); //double check with team
-  res.render('sign-up', { user, csrfToken: req.csrfToken()});
+  // const user = User.build(); //double check with team
+  res.render('sign-up', { csrfToken: req.csrfToken()});
 }));
 
 router.post('/sign-up', csrfProtection, signupValidators, asyncHandler(async(req, res) => {
@@ -29,7 +29,7 @@ router.post('/sign-up', csrfProtection, signupValidators, asyncHandler(async(req
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const user = await User.create({
+  const user = await User.build({
     firstName,
     lastName,
     email,
