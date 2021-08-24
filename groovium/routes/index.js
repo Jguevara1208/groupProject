@@ -40,8 +40,10 @@ router.post('/sign-up', csrfProtection, signupValidators, asyncHandler(async(req
 
   const validatorErrors = validationResult(req);
 
+  console.log(validatorErrors);
   if (validatorErrors.isEmpty()) {
     await user.save();
+    console.log('i made it before the redirect')
     res.redirect('/users');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
@@ -61,12 +63,12 @@ router.get('/log-in', csrfProtection, asyncHandler(async(req, res) => {
   res.render('log-in', { csrfToken: req.csrfToken()});
 }))
 
-router.post('/log-in', loginValidators, csrfProtection, asyncHandler(async (req, res) => {
+router.post('/log-in', loginValidators, csrfProtection, loginValidators, asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
     let errors = [];
     const validatorErrors = validationResult(req);
-    console.log(validatorErrors)
+    // console.log(validatorErrors)
     if (validatorErrors.isEmpty()) {
       const user = await User.findOne({ where: { email } });
 
