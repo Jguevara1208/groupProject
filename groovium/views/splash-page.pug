@@ -15,10 +15,20 @@ block content
             div.splash-stories-div 
                 each story in stories 
                     div.story-container 
-                        div.img-and-name
-                            img(href="")
-                            p= `${story.User.firstName} ${story.User.lastName}`
-                        div.story-title
-                            h3= story.title
-                        div.story-
+                        div.story-container-left
+                            div.img-and-name
+                                img(src=story.User.avatarUrl)
+                                p= `${story.User.firstName} ${story.User.lastName}`
+                            div.story-title
+                                h3= story.title
+                            div.story-summary 
+                                p= story.summary
+                            div.story-info
+                                div.left-story-info
+                                    p= `${date}  ${story.readTimeMinutes} min read`
+                                    a(href=`/topic/${story.topicId}`)= story.Topic.topic
+                                div.right-story-info 
+                                    a(href="/bookmarks")
+                        div.story-container-right 
+                            img(src=story.storyImgUrl)
             div.splash-topics-div 
