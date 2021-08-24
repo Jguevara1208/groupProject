@@ -1,0 +1,24 @@
+extends layout.pug
+block content
+  .outer-most-div-container
+    .title-owner-summary-container
+      .title-and-summary-container
+        h1(id="story-title") !{story.title}
+        h4(id="story-summary") !{story.summary}
+        p(id="story-readtime") !{story.readTimeMinutes} min read
+        a(href=`/topic/${story.topicId}`) !{story.topicId}
+      .owner-container
+        .owner-img-div
+          img(id="owner-image" src=`${user.dataValues.avatarUrl}`)
+        .owner-name-div
+          p !{user.dataValues.firstName}
+          p !{user.dataValues.lastName}
+      .icons-container
+    .story-image-and-content-container
+      .story-image-div
+        img(id="story-image" src=`${story.storyImgUrl}`)
+      .story-content-div
+        p !{story.body}
+    .comments-sections-container
+      .comment-textarea-div
+      .comments-left-div
