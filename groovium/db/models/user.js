@@ -14,19 +14,21 @@ module.exports = (sequelize, DataTypes) => {
       through: 'Bookmark',
       foreignKey: 'userId',
       otherKey: 'storyId',
-      as: 'usersBookmarks'
+      as: 'bookmark'
     }
 
     const likesColumnMapping = {
       through: 'Like',
       foreignKey: 'userId',
       otherKey: 'storyId',
+      as: 'likes'
     }
 
     const likedTopicColumnMapping = {
       through: 'likedTopic',
       foreignKey: 'userId',
       otherKey: 'topicId',
+      as: 'likedTopics'
     }
 
     const followingColumnMapping = {
@@ -43,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
       as: 'follower'
     }
 
+    User.hasMany( models.Story, { foreignKey: 'userId' })
+    User.hasMany( models.Comment, { foreignKey: 'userId' })
+
     User.belongsToMany( models.User, followingColumnMapping)
     User.belongsToMany( models.User, followerColumnMapping)
 
@@ -50,8 +55,6 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsToMany( models.Story, likesColumnMapping)
     User.belongsToMany( models.Story, bookMarkColumnMapping)
 
-    User.hasMany( models.Story, { foreignKey: 'userId' })
-    User.hasMany( models.Comment, { foreignKey: 'userId' })
   };
   return User;
 };

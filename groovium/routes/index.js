@@ -1,5 +1,5 @@
 var express = require('express');
-const { User } = require('../db/models');
+const { User, Story, Topic } = require('../db/models');
 const bcrypt = require('bcryptjs');
 const csrf = require('csurf')
 const csrfProtection = csrf({ cookie: true });
@@ -10,8 +10,13 @@ const { loginUser } = require('../auth')
 var router = express.Router();
 
 
-router.get('/', asyncHandler( async (req, res, next) => {
-  res.render('splash-page');
+router.get('/', asyncHandler( async (req, res) => {
+  const stories = await Story.findAll({
+    include: [User, Topic],
+    limit: 6
+  })
+  console.log(stories[0].User)
+  res.render('splash-page', { stories });
 }));
 
 router.get('/sign-up', csrfProtection, asyncHandler(async (req, res) => {

@@ -10,16 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     storyImgUrl: DataTypes.STRING
   }, {});
   Story.associate = function(models) {
+
     const bookMarkColumnMapping = {
       through: 'Bookmark',
       foreignKey: 'storyId',
-      otherKey: 'userId'
+      otherKey: 'userId',
+      as: 'bookmark'
     }
 
     const likesColumnMapping = {
       through: 'Like',
       foreignKey: 'storyId',
       otherKey: 'userId',
+      as: 'likes'
     }
 
     Story.belongsToMany( models.User, likesColumnMapping)
