@@ -55,7 +55,7 @@ nav {
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 80%;
+    height: 90%;
     align-items: center;
     justify-content: flex-start;
     background-color: white;
@@ -134,13 +134,14 @@ textarea {
 
 form > .form-input-div > p {
     color: rgb(164, 164, 164);
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .form-change-anchor { 
     color: #D76735;
     font-weight: bold;
     margin-left: 5px;
+    font-size: 14px
 }
 
 .form-text-area {

@@ -1,10 +1,24 @@
 extends layout.pug 
 block content 
-
-    div.under-nav 
-        div.under-nav-text
-            p#intro-p <span id="groovium">Groovium</span> is a place <span id="yellow">write</span>, <span id="red">read</span>, and <span id="green">connect</span>
-            p#sub-intro-p It’s easy and free to post your thinking on food, sports, tech, pets and connect with millions of readers.
-            a(id="get-groovy-button" href='/sign-up') Get Groovy
-        div.under-nav-img
-            img(src="./logos/splash-image.png", alt="logo of woman with hippie glasses")
+    div.main-content-wrapper
+        div.under-nav 
+            div.under-nav-text
+                p#intro-p <span id="groovium">Groovium</span> is a place <span id="yellow">write</span>, <span id="red">read</span>, and <span id="green">connect</span>
+                p#sub-intro-p It’s easy and free to post your thinking on food, sports, tech, pets and connect with millions of readers.
+                a(id="get-groovy-button" href='/sign-up') Get Groovy
+            div.under-nav-img
+                img(src="./logos/splash-image.png", alt="logo of woman with hippie glasses")
+        div.content-div 
+            div.content-intro 
+                h2 See what's trending on Groovium
+                img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+            div.splash-stories-div 
+                each story in stories 
+                    div.story-container 
+                        div.img-and-name
+                            img(href="")
+                            p= `${story.User.firstName} ${story.User.lastName}`
+                        div.story-title
+                            h3= story.title
+                        div.story-
+            div.splash-topics-div 
