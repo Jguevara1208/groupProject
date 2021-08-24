@@ -8,17 +8,29 @@ html(lang="en")
       script: include ../public/javascripts/index.js
       title Groovium
   body
-    h1 Welcome Back.
-    div
-      form(action="/log-in" method='POST')
-          p Sign in
-          input(type="hidden" name="_csrf" value=csrfToken)
-          label(for="email") Email
-          input(type="email" name="email")
-          label(for="password") Password
-          input(type="password" name="password" )
-          label(for="confirmPassword") Confirm Password
-          input(type="password" name="confirmPassword" )
-          button(type='submit') Log In
-          p No account?
-              span: a(href='/sign-up') Create one
+    div.form-container-outer
+      div.form-page-side-divs
+          div#logoDiv
+              a(href="/"): img(id="form-logo" src='/logos/logo.png')
+      div.form-page-center-div
+          div.form-container-inner-log-in
+              img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+              h2 Welcome Back
+              div.form-wrapper 
+                form(action="/log-in" method="POST")
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    div.form-input-div
+                        label(for="email") Email Address
+                        input(type="email" name="email" value=email)
+                    div.form-input-div
+                        label(for="password") Password
+                        input(type="password" name="password")
+                    div.form-input-div
+                        label(for="confirmPassword") Confirm Password
+                        input(type="password" name="confirmPassword")
+                    div(class="form-input-button-div")
+                        button(class="form-submit-button" type="submit") Log In
+                    div.form-input-div
+                        p No account?
+                            span: a(class="anchorNoUnderline form-change-anchor" href='/sign-up') Create one
+      div.form-page-side-divs
