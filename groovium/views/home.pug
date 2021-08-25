@@ -2,31 +2,30 @@ extends layout.pug
 block content
   html
     head
-      link(rel='stylesheet', href='/stylesheets/user-profile.css')
+      link(rel='stylesheet', href='/stylesheets/home.css')
     body
-
-        h3 My Topics
-        each topic in user.likedTopics
-            topic.topic
-            topic.id
         div.myTopics
+            a(id="topics-button" href='/topics') Topics
+            each topic in user.likedTopics
+                = topic.topic
+                = topic.id
 
-        h5  My Profile
-        each following in user.followings
-            following.id
-            following.avatarUrl
-        div.myProfile
+        div.following
+            a(id="following-button" href='/') Following
+            each following in user.followings
+                = following.id
+                = following.avatarUrl
 
-        h3 My Stories
-        each myStory in myStories
-            myStory.title
         div.myStories
+            a(id="stories-button" href='/stories') My Stories
+            each myStory in myStories
+                = myStory.title
 
-        h3 My Feed
-        each story in feedStories
-                story.User.firstName
-                story.Topic.id
-                story.Topic.topic
-                story.title
-                story.summary
         div.myFeed
+            a(id="myFeed-button" href='users') My Feed
+            each story in feedStories
+                = story.User.firstName
+                = story.Topic.id
+                = story.Topic.topic
+                = story.title
+                = story.summary
