@@ -10,7 +10,6 @@ router.get('/', asyncHandler(async (req, res) => {
 
     res.render('home')
 }));
-
 router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.url.split("/")[1]
     const user = await User.findByPk(userId)
@@ -18,15 +17,11 @@ router.get('/:userId', asyncHandler(async (req, res) => {
         where: {
             userId: userId
         }
-    });
-
     const topic = await Topic.findAll()
 
     console.log(user, story, topic)
-
-
     res.render('user-profile-page', { story, user, topic })
-}));
+  }));
 
 
 
