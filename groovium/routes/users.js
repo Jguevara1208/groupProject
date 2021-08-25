@@ -11,9 +11,9 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('home')
 }));
 
-router.get('/', asyncHandler(async (req, res) => {
-    res.render('user-profile-page')
-}));
+// router.get('/', asyncHandler(async (req, res) => {
+//     res.render('user-profile-page')
+// }));
 
 
 
