@@ -22,6 +22,9 @@ router.get('/:userId', asyncHandler(async (req, res) => {
 
     const topic = await Topic.findAll()
 
+    console.log(user, story, topic)
+
+
     res.render('user-profile-page', { story, user, topic })
 }));
 
