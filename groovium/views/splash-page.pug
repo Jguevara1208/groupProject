@@ -30,11 +30,9 @@ block content
                                     p= `${story.readTimeMinutes} min read`
                                     a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
                                 div.right-story-info 
-                                    span(class="material-icons-outlined") bookmark_add
-                                    //- a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
+                                    a(href="/bookmarks"): i(class="far fa-bookmark")
                         div.story-container-right 
                             a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
-                            //- a(href=`/stories/${story.id}`): img(class="splash-story-img" src=story.storyImgUrl)
         div.splash-topics-div
             h3 Discover more of what matters to you
             div.splash-topics

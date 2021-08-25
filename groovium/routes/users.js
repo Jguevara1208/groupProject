@@ -61,7 +61,44 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.get('/my-stories', asyncHandler(async (req, res) => {
-    res.render('my-stories')
+    const userId = req.session.auth.userId
+    const user = await User.findByPk(userId, {
+        include: [{
+            model: Story,
+            limit: 5,
+            include: [User, Topic]
+        },
+        {
+            model: Story,
+            as: 'bookmark'
+        }
+    ]
+    })
+
+    const newStories = user.Stories.map(story => {
+        const date = story.createdAt
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const newDate = `${month}-${day}`
+
+        return {
+            id: story.id,
+            title: story.title,
+            userId: story.User.id,
+            avatarUrl: story.User.avatarUrl,
+            firstName: story.User.firstName,
+            lastName: story.User.lastName,
+            summary: story.summary,
+            date: newDate,
+            readTimeMinutes: story.readTimeMinutes,
+            topicId: story.topicId,
+            topic: story.Topic.topic,
+            storyImgUrl: story.storyImgUrl
+        }
+    })
+
+    console.log(user.bookmark[0].title)
+    res.render('my-stories', {user, newStories})
 }))
 
 router.get('/:userId', asyncHandler(async (req, res) => {
