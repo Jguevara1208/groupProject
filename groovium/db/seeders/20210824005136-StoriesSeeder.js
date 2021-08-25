@@ -28,6 +28,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-   return queryInterface.bulkDelete('Stories', null, {});
+   return queryInterface.bulkDelete('Stories', null, { truncate: true, cascade: true, restartIdentity: true })
   }
 };
