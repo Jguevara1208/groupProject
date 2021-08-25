@@ -20,9 +20,9 @@ router.get('/:topicId', asyncHandler(async (req, res) => {
     const followers = await User.findAll({
         include: {
             model: Topic,
-            as: "topicId"
+            as: "likedTopics"
     }})
     console.log(followers, "<----- followers")
-    res.render('topic-page', { topic, stories })
+    res.render('topic-page', { topic, stories, followers })
   }));
 module.exports = router;

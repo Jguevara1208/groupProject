@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     const likedTopicColumnMapping = {
-      through: 'likedTopic',
+      through: 'LikedTopic',
       foreignKey: 'userId',
       otherKey: 'topicId',
       as: 'likedTopics'
