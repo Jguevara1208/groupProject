@@ -3,8 +3,15 @@ body {
 
 }
 
-.myTopics {
+.home-viewAllTopics-anchor {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-decoration: none;
+}
 
+.home-topic-anchor {
+    text-decoration: none;
 }
 
 .following {

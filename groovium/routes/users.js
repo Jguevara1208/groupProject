@@ -24,6 +24,10 @@ const { User, Topic, Story} = require('../db/models');
     // each myStory in myStories
     //     myStory.title
 
+router.get('/delete', asyncHandler(async (req, res) => {
+    res.render('/delete')
+}))
+
 
 router.get('/', asyncHandler(async (req, res) => {
 
