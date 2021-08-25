@@ -60,8 +60,11 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('home', {user, myStories, feedStories})
 }));
 
+router.get('/my-stories', asyncHandler(async (req, res) => {
+    res.render('my-stories')
+}))
 
-  router.get('/:userId', asyncHandler(async (req, res) => {
+router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
     const user = await User.findByPk(userId)
     const story = await Story.findAll({
@@ -73,6 +76,7 @@ router.get('/', asyncHandler(async (req, res) => {
     const topics = await Topic.findAll()
     res.render('user-profile-page', { story, user, topics })
 }));
+
 
 
 module.exports = router;

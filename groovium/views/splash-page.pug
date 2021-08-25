@@ -3,7 +3,7 @@ block content
     div.main-content-wrapper
         div.under-nav 
             div.under-nav-text
-                p#intro-p <span id="groovium">Groovium</span> is a place <span id="yellow">write</span>, <span id="red">read</span>, and <span id="green">connect</span>
+                p#intro-p <span id="groovium">Groovium</span> is a place to <span id="yellow">write</span>, <span id="red">read</span>, and <span id="green">connect</span>
                 p#sub-intro-p It’s easy and free to post your thinking on food, sports, tech, pets and connect with millions of readers.
                 a(id="get-groovy-button" href='/sign-up') Get Groovy
             div.under-nav-img
@@ -30,7 +30,8 @@ block content
                                     p= `${story.readTimeMinutes} min read`
                                     a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
                                 div.right-story-info 
-                                    a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
+                                    span(class="material-icons-outlined") bookmark_add
+                                    //- a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
                         div.story-container-right 
                             a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
                             //- a(href=`/stories/${story.id}`): img(class="splash-story-img" src=story.storyImgUrl)
