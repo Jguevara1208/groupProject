@@ -1,4 +1,37 @@
-extends layout.pug 
-block content 
+extends layout.pug
+block content
+  html
+    head
+      link(rel='stylesheet', href='/stylesheets/user-profile.css')
+    body
+        div.form-container-outer
+            div.form-page-side-divs
+                div#logoDiv
+                    a(href="/"): img(id="form-logo" src='/logos/logo.png')
 
-    
+            div.form-page-left-div
+                div.topics
+                h3 My Topics
+                    a(href="/tech" id="topics-text") Tech
+                    a(href="/food" id="topics-text") Food
+                    a(href="/sports" id="topics-text") Sports
+                    a(href="/pets" id="topics-text") Pets
+
+            div.form-page-right-div
+                div.profile
+                    h5  My Profile
+                    a(href="/user")
+                    button Start Writing
+
+                div.stories
+                    h3 My Stories
+                    a(href="/recent-stories") Recent Stories
+
+            div.form-page-middle-div
+                div.feed
+                    h3 My Feed
+                    a(href="" id="feed-story") story 1 <br>
+                    a(href="" id="feed-story") story 2 <br>
+                    a(href="" id="feed-story") story 3 <br>
+                    a(href="" id="feed-story") story 4 <br>
+                    a(href="" id="feed-story") story 5
