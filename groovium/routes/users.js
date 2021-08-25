@@ -46,7 +46,6 @@ router.get('/', asyncHandler(async (req, res) => {
     });
 
     const topics = await Topic.findAll()
-    // console.log(user, story, topic)
     res.render('user-profile-page', { story, user, topics })
 }));
 
