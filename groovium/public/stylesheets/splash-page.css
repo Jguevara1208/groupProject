@@ -1,9 +1,12 @@
 a {
     font-family: 'Montserrat Alternates';
 }
-body {
+body, html{
     font-family: 'Montserrat Alternates';
+    height: 100%;
+    overflow: auto;
 }
+
 #groovium {
     font-family: 'Lobster';
 }
