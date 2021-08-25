@@ -3,21 +3,6 @@ const router = express.Router();
 const { asyncHandler } = require("../utils");
 const { User, Topic, Story} = require('../db/models');
 
-router.get('/', asyncHandler(async (req, res) => {
-
-    const userId = req.session.auth.userId;
-
-    const user = await User.findByPk(userId, {
-        include: [{
-            model: User,
-            as: 'followings',
-        }, {
-            model: Topic,
-            as: 'likedTopics'
-        }]
-    });
-
-    console.log(user.likedTopics[0])
 
     // user.firstName
 
@@ -39,6 +24,22 @@ router.get('/', asyncHandler(async (req, res) => {
     // each myStory in myStories
     //     myStory.title
 
+
+router.get('/', asyncHandler(async (req, res) => {
+
+    const userId = req.session.auth.userId;
+
+    const user = await User.findByPk(userId, {
+        include: [{
+            model: User,
+            as: 'followings',
+        }, {
+            model: Topic,
+            as: 'likedTopics'
+        }]
+    });
+
+    console.log(user.likedTopics[0])
 
     const followingsIds = user.followings.map(user => user.id)
     const feedStories = await Story.findAll({

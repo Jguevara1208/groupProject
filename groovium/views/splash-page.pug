@@ -17,7 +17,7 @@ block content
                     div.story-container 
                         div.story-container-left
                             div.avatar-and-name
-                                a(href=`/users/${story.userId}`): img(class="splash-avatar-img" src=story.avatarUrl)
+                                div(class="splash-avatar-img" style=`background-image: url('${story.avatarUrl}')`)
                                 a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
                             div.story-title
                                 a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
@@ -32,7 +32,8 @@ block content
                                 div.right-story-info 
                                     a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
                         div.story-container-right 
-                            a(href=`/stories/${story.id}`): img(class="splash-story-img" src=story.storyImgUrl)
+                            a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
+                            //- a(href=`/stories/${story.id}`): img(class="splash-story-img" src=story.storyImgUrl)
         div.splash-topics-div
             h3 Discover more of what matters to you
             div.splash-topics
