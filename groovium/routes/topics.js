@@ -11,7 +11,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:topicId', asyncHandler(async (req, res) => {
     const topicId = req.url.split("/")[1]
     const topic = await Topic.findByPk(topicId)
-    console.log(topic)
+    console.log(topic.imageUrl)
     res.render('topic-page', { topic })
   }));
 module.exports = router;
