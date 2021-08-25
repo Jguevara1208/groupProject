@@ -24,6 +24,10 @@ const { User, Topic, Story} = require('../db/models');
     // each myStory in myStories
     //     myStory.title
 
+router.get('/delete', asyncHandler(async (req, res) => {
+    res.render('/delete')
+}))
+
 
 router.get('/', asyncHandler(async (req, res) => {
 
@@ -39,7 +43,7 @@ router.get('/', asyncHandler(async (req, res) => {
         }]
     });
 
-    console.log(user.likedTopics[0])
+    // console.log(user.likedTopics[0])
 
     const followingsIds = user.followings.map(user => user.id)
     const feedStories = await Story.findAll({
@@ -50,6 +54,28 @@ router.get('/', asyncHandler(async (req, res) => {
         }
     })
 
+    const newStories = feedStories.map(story => {
+        const date = story.createdAt
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const newDate = `${month}-${day}`
+
+        return {
+          id: story.id,
+          title: story.title,
+          userId: story.User.id,
+          avatarUrl: story.User.avatarUrl,
+          firstName: story.User.firstName,
+          lastName: story.User.lastName,
+          summary: story.summary,
+          date: newDate,
+          readTimeMinutes: story.readTimeMinutes,
+          topicId: story.topicId,
+          topic: story.Topic.topic,
+          storyImgUrl: story.storyImgUrl
+        }
+      })
+
     const myStories = await Story.findAll({
         limit: 5,
         where: {
@@ -57,7 +83,7 @@ router.get('/', asyncHandler(async (req, res) => {
         }
     })
 
-    res.render('home', {user, myStories, feedStories})
+    res.render('home', {user, myStories, newStories})
 }));
 
 router.get('/my-stories', asyncHandler(async (req, res) => {
