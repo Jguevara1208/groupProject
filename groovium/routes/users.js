@@ -31,20 +31,24 @@ router.get('/', asyncHandler(async (req, res) => {
             userId
         }
     })
-    
+
     res.render('home', {user, myStories, feedStories})
 }));
-router.get('/:userId', asyncHandler(async (req, res) => {
-    const userId = req.url.split("/")[1]
+
+
+  router.get('/:userId', asyncHandler(async (req, res) => {
+    const userId = req.params.userId
     const user = await User.findByPk(userId)
     const story = await Story.findAll({
         where: {
             userId: userId
         }
-    const topic = await Topic.findAll()
+    });
 
-    res.render('user-profile-page', { story, user, topic })
-  }));
+    const topics = await Topic.findAll()
+    // console.log(user, story, topic)
+    res.render('user-profile-page', { story, user, topics })
+}));
 
 
 module.exports = router;
