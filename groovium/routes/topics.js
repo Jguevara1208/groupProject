@@ -10,19 +10,23 @@ router.get('/', asyncHandler(async (req, res) => {
 }))
 
 router.get('/:topicId', asyncHandler(async (req, res) => {
-    const topicId = req.url.split("/")[1]
+    const topicId = req.params.topicId
     const topic = await Topic.findByPk(topicId)
     const stories = await Story.findAll({
         where: {
             topicId
         }
     })
-    const followers = await User.findAll({
+    const followersArr = await Topic.findOne({
+        where: {id: topicId} ,
         include: {
-            model: Topic,
-            as: "likedTopics"
+            model: User,
+            as: 'topicLikes',
+
     }})
-    console.log(followers, "<----- followers")
+
+    const followers = followersArr.topicLikes
+
     res.render('topic-page', { topic, stories, followers })
   }));
 module.exports = router;
