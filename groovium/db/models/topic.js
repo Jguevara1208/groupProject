@@ -1,10 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Topic = sequelize.define('Topic', {
-    topic: DataTypes.STRING
+    topic: DataTypes.STRING,
+    imageUrl: DataTypes.STRING
   }, {});
   Topic.associate = function(models) {
-    
+
     const likedTopicColumnMapping = {
       through: 'likedTopic',
       foreignKey: 'topicId',
