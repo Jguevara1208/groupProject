@@ -1,3 +1,13 @@
+a {
+    font-family: 'Montserrat Alternates';
+}
+body {
+    font-family: 'Montserrat Alternates';
+}
+#groovium {
+    font-family: 'Lobster';
+}
+
 .main-content-wrapper {
     display: flex;
     flex-direction: column;
@@ -16,16 +26,15 @@
 .under-nav-text {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: space-around;
     align-items: center;
-    width: 315px;
-    height: 245px;
-    margin-left: 240px;
+    width: 40%;
+    height: 100%;
+    text-align: center;
 }
 .under-nav-img {
     display: flex;
     align-items: center;
-    margin-right: 130px;
 }
 
 #groovium {
@@ -62,14 +71,13 @@
     color: white;
     background-color: FBD266;
     width: 90px;
-    height: 30px;
+    height: 20px;
     padding: 10px 27px;
     border-radius: 20px;
     text-align: center;
     border: none;
     text-decoration: none;
-    margin-top: 25px;
-    margin-right: 40px;
+    font-size: 15px;
 }
 
 .content-div {
@@ -98,11 +106,15 @@
     width:40px;
     border-radius: 15px;
     margin-right: 20px;
+    background-position: center;
+    background-size: cover;
 }
 
 .splash-story-img {
     height:150px;
     width: 150px;
+    background-size: cover;
+    background-position: center;
 }
 
 .splash-story-topic {
