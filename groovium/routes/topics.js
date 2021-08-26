@@ -9,6 +9,7 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('topics-list', { topics })
 }))
 
+
 router.get('/:topicId', asyncHandler(async (req, res) => {
     const topicId = req.params.topicId
     const topic = await Topic.findByPk(topicId)

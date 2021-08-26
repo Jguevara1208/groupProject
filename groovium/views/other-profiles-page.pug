@@ -1,0 +1,55 @@
+extends layout.pug 
+block content
+
+    .other-profiles-container
+        .other-profiles-wrapper 
+            .other-profiles-left-container
+                .other-profiles-left
+                    .other-profiles-header-left
+                        .other-profiles-avatar-image 
+                            .other-profiles-avatar-img(style=`background-image: url('${user.avatarUrl}')`)
+                        .other-profiles-follow-me-button   
+                            a(class="anchorNoUnderline follow-me-button" href=`/users/${user.id}/follow`) Follow Me 
+                        .other-profiles-header-text-left
+                            p= `${user.firstName} ${user.lastName}`
+                    .other-profiles-content-left
+                        .other-profiles-summary-text 
+                            p= user.shortBio
+                        .other-profiles-header-text-left
+                            p Follows
+                        .other-profiles-follows-container
+                             each followedUser in user.followings
+                                a(href=`/users/${followedUser.id}`): .followingAvatars(style=`background-image: url("${followedUser.avatarUrl}")`)
+                    .other-profiles-topics-container 
+                        .other-profiles-header-text-left 
+                            p Topics
+                        .other-profile-topic-buttons 
+                            each topic in user.likedTopics
+                                a(class="anchorNoUnderline splash-story-topic" href=`/topics/${topic.id}`)= topic.topic
+            .other-profiles-right-container
+                .other-profiles-right
+                    .other-profiles-header-right
+                        .other-profiles-header-text-right
+                            p=`${user.firstName}'s Stories`
+                .other-profiles-content-right 
+                        .my-stories-stories-div 
+                            each story in newStories
+                                .story-container 
+                                    .story-container-left
+                                        .avatar-and-name
+                                            div(class="splash-avatar-img" style=`background-image: url('https://i.pinimg.com/originals/ff/75/88/ff75888cb867d4c7ff3a8c1e4fee6795.jpg')`)
+                                            a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
+                                        .story-title
+                                            a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
+                                        .story-summary 
+                                            p= story.summary
+                                        .story-info
+                                            .left-story-info
+                                                p= story.date
+                                                p=  '•'  
+                                                p= `${story.readTimeMinutes} min read`
+                                                a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
+                                            .right-story-bookmark-info 
+                                                a(href="/bookmarks"): i(class="far fa-bookmark")
+                                    .story-container-right 
+                                        a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)

@@ -2,36 +2,50 @@ extends layout.pug
 block content
   html
     head
-      link(rel='stylesheet', href='/stylesheets/user-profile.css')
+      link(rel='stylesheet', href='/stylesheets/home.css')
     body
-        div.form-container-outer
-            div.form-page-side-divs
-                div#logoDiv
-                    a(href="/"): img(id="form-logo" src='/logos/logo.png')
+        div.viewAllTopics
+        a(class="home-viewAllTopics-anchor" href="/topics") View All Topics
 
-            div.form-page-left-div
-                div.topics
-                h3 My Topics
-                    a(href="/tech" id="topics-text") Tech
-                    a(href="/food" id="topics-text") Food
-                    a(href="/sports" id="topics-text") Sports
-                    a(href="/pets" id="topics-text") Pets
+        div.myTopics
+            each topic in user.likedTopics
+                a(class="home-topic-anchor" href=`/topics/${topic.id}`)=topic.topic
 
-            div.form-page-right-div
-                div.profile
-                    h5  My Profile
-                    a(href="/user")
-                    button Start Writing
+        div.following
+            each following in user.followings
+                a(class="home-following-avatar-anchor" href=`/users/${following.id}`): div(class="home-following-avatar-image" style=`background-image: url("${following.avatarUrl}")`)
 
-                div.stories
-                    h3 My Stories
-                    a(href="/recent-stories") Recent Stories
+        div.myFeed
+        h3 My Feed
+            div.home-stories-div
+                each story in newStories
+                    div.story-container
+                        div.story-container-left
+                            div.avatar-and-name
+                                div(class="splash-avatar-img" style=`background-image: url('${story.avatarUrl}')`)
+                                a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
+                            div.story-title
+                                a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
+                            div.story-summary
+                                p= story.summary
+                            div.story-info
+                                div.left-story-info
+                                    p= story.date
+                                    p=  '•'
+                                    p= `${story.readTimeMinutes} min read`
+                                    a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
+                                div.right-story-info
+                                    a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
+                        div.story-container-right
+                            a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
 
-            div.form-page-middle-div
-                div.feed
-                    h3 My Feed
-                    a(href="" id="feed-story") story 1 <br>
-                    a(href="" id="feed-story") story 2 <br>
-                    a(href="" id="feed-story") story 3 <br>
-                    a(href="" id="feed-story") story 4 <br>
-                    a(href="" id="feed-story") story 5
+
+        div.myStories
+            each story in newStories
+                a(class="home-feed-anchor" href=`/users/${story.userId}`) Story
+
+                //- = story.User.firstName
+                //- = story.Topic.id
+                //- = story.Topic.topic
+                //- = story.title
+                //- = story.summary
