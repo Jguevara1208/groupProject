@@ -4,22 +4,25 @@ block content
     .topic-page-outer-most-container
       .topic-left-side-container
         .topic-name-and-description-container
-          .topic-name-and-follow-button-container
-            button(id="add-topic" form="?" action="?") Add Topic
-            h2(id="topic-name") !{topic.topic}
+          .other-profiles-header-left
+            .other-profiles-follow-me-button
+              button(id="add-topic" form="?" action="?") Add Topic
+            .other-profiles-header-text-left
+              p= topic.topic
           .topic-description-container
             p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Varius sit amet mattis vulputate enim nulla aliquet. Vitae purus faucibus ornare suspendisse sed nisi lacus sed. Tellus cras adipiscing enim eu. Hendrerit gravida rutrum quisque non tellus orci ac auctor augue.
-        .topic-followers-and-other-topics
-          h3 Followers
-          .topic-followers-container
-            each follower in followers
-              a(id="follower-image" href=`/users/${follower.id}`)
-                .topic-follower-avatar(class="splash-avatar-img" style=`background-image: url('${follower.avatarUrl}')`)
+        .other-profiles-header-text-left
+          p Followers
+        .other-profiles-follows-container
+          each follower in followers
+            a(href=`/users/${follower.id}`): .followingAvatars(style=`background-image: url("${follower.avatarUrl}")`)
+
       .topic-main-content-container
         .topic-title-and-image-container
           .topic-image-container(style=`background-image: url('${topic.imageUrl}')`)
-          .topic-title-div
-            h2(id="topic-title") !{topic.topic} Stories
+          .other-profiles-header-right
+            .other-profiles-header-text-right
+              p= `${topic.topic} Stories`
         .topic-stories-list-container
           .topic-stories-div
             each story in newStories
@@ -33,15 +36,15 @@ block content
                     a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
                   .topic-story-summary
                     p= story.summary
-                  .story-info
+                  .story-info(id="topic-story-info")
                     .left-story-info
                       p= story.date
                       p=  '•'
                       p= `${story.readTimeMinutes} min read`
                       a(class="splash-story-topic" href=`/stories/${story.topicId}`)= story.topic
-                    .right-story-bookmark-info
-                      a(href=`/users/my-stories/${story.id}/edit`): i(class="far fa-edit")
-                      a(href=`/users/my-stories/${story.id}/delete`): i(class="far fa-trash-alt")
+                    .topic-story-icons-container
+                      a(href=`/users/my-stories/${story.id}/edit`): i(id="topic-story-thumb" class="far fa-thumbs-up")
+                      a(href=`/users/my-stories/${story.id}/delete`): i(id="topic-story-bookmark" class="far fa-bookmark")
                 .story-container-right
                     a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
           //- .topic-stories-list

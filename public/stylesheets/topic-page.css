@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: rgba(143, 176, 169, .17);
 }
 
 .topic-page-outer-most-container{
@@ -16,6 +15,7 @@
   align-items: center;
   width: 30%;
   margin-top: 80px;
+  border-right:1px solid rgba(0, 0, 0, 0.25);
 }
 
 .topic-main-content-container {
@@ -23,7 +23,7 @@
   flex-direction: column;
   align-content: center;
   width: 75%;
-  margin: 30px;
+  margin-left: 30px;
 }
 
 .topic-name-and-description-container {
@@ -42,7 +42,7 @@
 }
 #add-topic {
   color: white;
-  background-color: D76735;
+  background-color: rgba(215, 103, 53, .7);
   width: 113px;
   height: 30px;
   padding: 10px 27px;
@@ -54,23 +54,18 @@
 
 .topic-description-container {
   text-align: center;
-  border-top: 0.3px solid #000000;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
   line-height: normal;
   letter-spacing: 0.06em;
-  color: rgba(0, 0, 0, 0.46);
   background-color: white;
-  margin: 5px;
-  padding: 10px;
+  width: 80%;
 
 }
 .story-summary-container{
   text-align: center;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
   line-height: normal;
   letter-spacing: 0.06em;
   color: rgba(0, 0, 0, 0.46);
@@ -83,45 +78,43 @@
   font-size: 16px;
   line-height: normal;
   letter-spacing: 0.06em;
-  color: rgba(0, 0, 0, 0.46);
 }
 
 .story-footnotes{
-  border-bottom: 0.3px solid #000000;
+  border-bottom: 0.3px solid rgba(0, 0, 0, 0.25);
 }
 .topic-title-and-image-container {
-  width: 80%;
-  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   text-align: center;
-  border-bottom: 0.3px solid #000000;
+  border-bottom: 0.3px solid rgba(0, 0, 0, 0.25);
+  margin-bottom: 60px;
 }
 
 .topic-image-container {
   height: 125px;
-  background-size: 790px;
+  width: 95%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 40px;
 }
 
-.topic-followers-container {
+/* .topic-followers-container {
   display: flex;
   flex-wrap: wrap;
   width: 10%;
   align-content: center;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
-  border-top:  0.3px solid #000000;
-  padding: 10px;
-}
+} */
 
 .topic-stories-list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(143, 176, 169, .17);
-  width: 80%;
+  width: 100%;
   padding-bottom: 10px;
 }
 
@@ -163,7 +156,7 @@
 .story-image {
   width: 220px;
   height: 220px;
-  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  border: 0.5px solid rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   border-radius: 15px;
   margin: 5px;
@@ -172,4 +165,22 @@
 #story-title {
   width: 60%;
   height: 10%;
+}
+
+.topic-story-icons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+}
+#topic-story-thumb {
+  font-size: 18px;
+  color: FBD266;
+}
+
+#topic-story-bookmark {
+  font-size: 18px;
+}
+
+#topic-story-info {
+  align-items: center;
 }

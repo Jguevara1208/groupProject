@@ -6,6 +6,7 @@ const { Topic, Story, User } = require("../db/models");
 
 router.get('/', asyncHandler(async (req, res) => {
     const topics = await Topic.findAll()
+    console.log("topics[0] ------>", topics[0].id)
     res.render('topics-list', { topics })
 }))
 
@@ -13,6 +14,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:topicId', asyncHandler(async (req, res) => {
     const topicId = req.params.topicId
     const topic = await Topic.findByPk(topicId)
+    //const otherTopics = await
     const stories = await Story.findAll({
         include: [User, Topic],
         where: {

@@ -1,57 +1,52 @@
 extends layout.pug
 block content
     .user-profile-container
-        .user-profile-wrapper 
+        .user-profile-wrapper
             .user-profile-left-container
                 .user-profile-left
                     .user-profile-header-left
-<<<<<<< HEAD:views/my-stories.pug
                         .user-profile-avatar-container
                             .user-profile-avatar-img(style=`background-image: url(${user.avatarUrl})`)
-=======
-                        .user-profile-avatar-container 
-                            .user-profile-avatar-img(style=`background-image: url('https://i.pinimg.com/originals/ff/75/88/ff75888cb867d4c7ff3a8c1e4fee6795.jpg')`)
->>>>>>> main:groovium/views/my-stories.pug
                         .user-profile-header-text-left
                             p Your Stories
                         .user-profile-empty-right
-                .user-profile-content-left 
-                        .my-stories-stories-div 
+                .user-profile-content-left
+                        .my-stories-stories-div
                             each story in newStories
-                                .story-container 
+                                .story-container
                                     .story-container-left
                                         .avatar-and-name
                                             div(class="splash-avatar-img" style=`background-image: url(${user.avatarUrl}))`)
                                             a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
                                         .story-title
                                             a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
-                                        .story-summary 
+                                        .story-summary
                                             p= story.summary
                                         .story-info
                                             .left-story-info
                                                 p= story.date
-                                                p=  '•'  
+                                                p=  '•'
                                                 p= `${story.readTimeMinutes} min read`
                                                 a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
-                                            .right-story-bookmark-info 
+                                            .right-story-bookmark-info
                                                 a(href=`/my-stories/${story.id}/edit`): i(class="far fa-edit")
                                                 a(href=`users/my-stories/${story.id}/delete`): i(class="far fa-trash-alt")
-                                    .story-container-right 
+                                    .story-container-right
                                         a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
             .user-profile-right-container
                 .user-profile-right
                     .user-profile-header-right
                         .user-profile-header-text-right
                             p Bookmarks
-                    .my-stories-bookmark-div 
+                    .my-stories-bookmark-div
                         each bookmark in user.bookmark
                             .bookmark-container-wrapper
-                                .bookmark-container 
+                                .bookmark-container
                                     .bookmark-container-left
                                         .bookmark-title
                                             a(class="aNoUnderLine" href=`/stories/${bookmark.id}`): h3= bookmark.title
-                                        .bookmark-summary 
+                                        .bookmark-summary
                                             p= bookmark.summary
-                                    .bookmark-container-right 
+                                    .bookmark-container-right
                                         a(href=`/stories/${bookmark.id}`): div(class="bookmark-story-img" style=`background-image: url('${bookmark.storyImgUrl}')`)
                                 a(href="" value=bookmark.id): i(class="fas fa-ban")
