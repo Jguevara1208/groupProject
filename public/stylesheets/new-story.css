@@ -1,0 +1,118 @@
+.publish-container-outer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.publish-page-side-divs {
+    display: flex;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+    background-color: 8FB0A9;
+}
+
+#publish-logo {
+    margin-top: 30px;
+    margin-right: 15px;
+}
+
+.publish-container-inner-sign-up {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 90%;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+.publish-container-inner-log-in{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 60%;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+.publish-container-center {
+    width: 100%;
+
+}
+
+.publish-page-center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: FCFCFC;
+}
+
+.publish-peace-image {
+    margin-top: 80px;
+}
+
+.publish-input-div {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    text-align: center;
+}
+
+.publish-wrapper {
+    margin-top: 35px;
+    width: 40%;
+}
+
+input {
+    margin-top: 10px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid grey;
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+.publish-submit-button {
+    background-color: #FBD266;
+    width: 100px;
+    height: 35px;
+    padding: 10px 27px;
+    border-radius: 20px;
+    border: none;
+    font-size: 12.5px;
+}
+
+.publish-input-button-div {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+publish > .publish-input-div > p {
+    color: rgb(164, 164, 164);
+    font-size: 12px;
+}
+
+.publish-change-anchor {
+    color: #D76735;
+    font-weight: bold;
+    margin-left: 5px;
+    font-size: 14px
+}
+
+.publish-text-area {
+    width: 100%;
+    height: 70px;
+    border: none;
+    border-bottom: 1px solid black;
+}

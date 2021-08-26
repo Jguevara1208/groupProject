@@ -106,10 +106,6 @@ router.get('/:userId/my-stories', asyncHandler(async (req, res) => {
             storyImgUrl: story.storyImgUrl
         }
     })
-
-    //console.log(user.bookmark[0].title)
-
-
     res.render('my-stories', {user, newStories})
 }))
 
