@@ -106,6 +106,12 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
     res.render('my-stories', {user, newStories})
 }))
 
+router.get('/my-stories/new', asyncHandler(async (req, res) => {
+    const topics = await Topic.findAll()
+    console.log(topics)
+    res.render('new-story', { topics })
+}));
+
 router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
 
