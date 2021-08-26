@@ -31,8 +31,8 @@ router.get('/delete', asyncHandler(async (req, res) => {
 
 router.get('/:userId', asyncHandler(async (req, res) => {
 
-    //const userId = req.session.auth.userId;
-    const userId = req.url.split("/")[1]
+    const currentUserId = req.session.auth.userId;
+    const userId = Number(req.url.split('/')[1])
 
     const user = await User.findByPk(userId, {
         include: [{
@@ -43,8 +43,6 @@ router.get('/:userId', asyncHandler(async (req, res) => {
             as: 'likedTopics'
         }]
     });
-
-     console.log(user.avatarUrl, "<------ user.avatarUrl")
 
     const followingsIds = user.followings.map(user => user.id)
     const feedStories = await Story.findAll({
@@ -83,11 +81,16 @@ router.get('/:userId', asyncHandler(async (req, res) => {
             userId
         }
     })
-
-    res.render('home', {user, myStories, newStories})
+    console.log(userId, "<----- userId");
+    console.log(currentUserId, "currentUserId")
+    if(userId === currentUserId){
+        res.render('home', {user, myStories, newStories})
+    } else {
+        res.render('other-profiles-page', { user, newStories })
+    }
 }));
 
-router.get('/my-stories', asyncHandler(async (req, res) => {
+router.get('/:userId/my-stories', asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId
     const user = await User.findByPk(userId, {
         include: [{
@@ -124,52 +127,54 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
         }
     })
 
-    console.log(user.bookmark[0].title)
+    //console.log(user.bookmark[0].title)
+
+
     res.render('my-stories', {user, newStories})
 }))
 
-router.get('/:userId', asyncHandler(async (req, res) => {
-    const userId = req.params.userId
+// router.get('/:userId', asyncHandler(async (req, res) => {
+//     //const userId = req.params.userId
 
-    const user = await User.findByPk(userId, {
-        limit: 5,
-        include: [{
-            model: User,
-            as: 'followings',
-        }, {
-            model: Topic,
-            as: 'likedTopics',
-        }, {
-            model: Story,
-            include: [User, Topic]
-        }
-    ]
-    });
+//     const user = await User.findByPk(userId, {
+//         limit: 5,
+//         include: [{
+//             model: User,
+//             as: 'followings',
+//         }, {
+//             model: Topic,
+//             as: 'likedTopics',
+//         }, {
+//             model: Story,
+//             include: [User, Topic]
+//         }
+//     ]
+//     });
 
-    const newStories = user.Stories.map(story => {
-        const date = story.createdAt
-        const month = date.getMonth() + 1
-        const day = date.getDate()
-        const newDate = `${month}-${day}`
+//     const newStories = user.Stories.map(story => {
+//         const date = story.createdAt
+//         const month = date.getMonth() + 1
+//         const day = date.getDate()
+//         const newDate = `${month}-${day}`
 
-        return {
-            id: story.id,
-            title: story.title,
-            userId: user.id,
-            avatarUrl: user.avatarUrl,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            summary: story.summary,
-            date: newDate,
-            readTimeMinutes: story.readTimeMinutes,
-            topicId: story.topicId,
-            topic: story.Topic.topic,
-            storyImgUrl: story.storyImgUrl
-        }
-    })
+//         return {
+//             id: story.id,
+//             title: story.title,
+//             userId: user.id,
+//             avatarUrl: user.avatarUrl,
+//             firstName: user.firstName,
+//             lastName: user.lastName,
+//             summary: story.summary,
+//             date: newDate,
+//             readTimeMinutes: story.readTimeMinutes,
+//             topicId: story.topicId,
+//             topic: story.Topic.topic,
+//             storyImgUrl: story.storyImgUrl
+//         }
+//     })
 
-    res.render('other-profiles-page', { user, newStories })
-}));
+//     res.render('other-profiles-page', { user, newStories })
+// }));
 
 
 
