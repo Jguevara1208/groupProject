@@ -9,10 +9,9 @@ router.get('/delete', asyncHandler(async (req, res) => {
 }))
 
 
-router.get('/:userId', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
 
-    const currentUserId = req.session.auth.userId;
-    const userId = Number(req.url.split('/')[1])
+    const userId = req.session.auth.userId;
 
     const user = await User.findByPk(userId, {
         include: [{
@@ -23,6 +22,7 @@ router.get('/:userId', asyncHandler(async (req, res) => {
             as: 'likedTopics'
         }]
     });
+
 
     const followingsIds = user.followings.map(user => user.id)
     const feedStories = await Story.findAll({
@@ -61,16 +61,11 @@ router.get('/:userId', asyncHandler(async (req, res) => {
             userId
         }
     })
-    console.log(userId, "<----- userId");
-    console.log(currentUserId, "currentUserId")
-    if(userId === currentUserId){
-        res.render('home', {user, myStories, newStories})
-    } else {
-        res.render('other-profiles-page', { user, newStories })
-    }
+
+    res.render('home', {user, myStories, newStories})
 }));
 
-router.get('/:userId/my-stories', asyncHandler(async (req, res) => {
+router.get('/my-stories', asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId
     const user = await User.findByPk(userId, {
         include: [{
@@ -106,51 +101,64 @@ router.get('/:userId/my-stories', asyncHandler(async (req, res) => {
             storyImgUrl: story.storyImgUrl
         }
     })
+
+    console.log(user.bookmark)
     res.render('my-stories', {user, newStories})
 }))
 
-// router.get('/:userId', asyncHandler(async (req, res) => {
-//     //const userId = req.params.userId
+router.get('/my-stories/new', asyncHandler(async (req, res) => {
+    const topics = await Topic.findAll()
+    console.log(topics)
+    res.render('new-story', { topics })
+}));
 
-//     const user = await User.findByPk(userId, {
-//         limit: 5,
-//         include: [{
-//             model: User,
-//             as: 'followings',
-//         }, {
-//             model: Topic,
-//             as: 'likedTopics',
-//         }, {
-//             model: Story,
-//             include: [User, Topic]
-//         }
-//     ]
-//     });
+router.get('/:userId', asyncHandler(async (req, res) => {
+    const userId = req.params.userId
 
-//     const newStories = user.Stories.map(story => {
-//         const date = story.createdAt
-//         const month = date.getMonth() + 1
-//         const day = date.getDate()
-//         const newDate = `${month}-${day}`
+    const user = await User.findByPk(userId, {
+        limit: 5,
+        include: [{
+            model: User,
+            as: 'followings',
+        }, {
+            model: Topic,
+            as: 'likedTopics',
+        }, {
+            model: Story,
+            include: [User, Topic]
+        }
+    ]
+    });
 
-//         return {
-//             id: story.id,
-//             title: story.title,
-//             userId: user.id,
-//             avatarUrl: user.avatarUrl,
-//             firstName: user.firstName,
-//             lastName: user.lastName,
-//             summary: story.summary,
-//             date: newDate,
-//             readTimeMinutes: story.readTimeMinutes,
-//             topicId: story.topicId,
-//             topic: story.Topic.topic,
-//             storyImgUrl: story.storyImgUrl
-//         }
-//     })
+    const newStories = user.Stories.map(story => {
+        const date = story.createdAt
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const newDate = `${month}-${day}`
 
-//     res.render('other-profiles-page', { user, newStories })
-// }));
+        return {
+            id: story.id,
+            title: story.title,
+            userId: user.id,
+            avatarUrl: user.avatarUrl,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            summary: story.summary,
+            date: newDate,
+            readTimeMinutes: story.readTimeMinutes,
+            topicId: story.topicId,
+            topic: story.Topic.topic,
+            storyImgUrl: story.storyImgUrl
+        }
+    })
+
+    if (req.params.userId == req.session.auth.userId) {
+        res.redirect('/users/my-stories')
+    } else {
+        res.render('other-profiles-page', { user, newStories })
+    }
+
+}));
 
 
 
