@@ -1,58 +1,25 @@
 .outer-most-container {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
 
-.topics-list-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
 }
 
 .topics-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
+
 }
 
-.topic-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40%;
-  border: .5px solid rgba(0,0,0,0.25);
-  margin: 20px;
+#topics-page-title {
+
 }
 
+.food-topic-container {
 
-.topic-list-image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
 }
-
-.topic-image{
-  height:40px;
-  width:100%;
-  background-position: center;
-  background-size: cover;
-}
-
 
 .food-topic-image-div {
-
+  
 }
 
 #topic-image {
-  width:100%;
+
 }
 
 .food-topic-title-div {
