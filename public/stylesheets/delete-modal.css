@@ -1,0 +1,47 @@
+body{
+
+}
+
+.delete-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+#accept-deletion-button, #cancel-deletion-button{
+    display: inline-block;
+    padding: 40px;
+    padding-top: 45px;
+}
+
+#accept-deletion-button{
+    color: white;
+    background-color: #D76735;
+    width: 90px;
+    height: 20px;
+    padding: 10px 27px;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+#cancel-deletion-button{
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+p{
+    font-family: sans-serif;
+}
+
+p:nth-child(3){
+    padding-top: 30px;
+}

@@ -9,7 +9,7 @@ block content
                         .other-profiles-avatar-image 
                             .other-profiles-avatar-img(style=`background-image: url('${user.avatarUrl}')`)
                         .other-profiles-follow-me-button   
-                            a(class="anchorNoUnderline follow-me-button" href=`/users/${user.id}/follow`) Follow Me 
+                            a(class="anchorNoUnderline follow-me-button" href=`/my-stories/new'`) Follow Me 
                         .other-profiles-header-text-left
                             p= `${user.firstName} ${user.lastName}`
                     .other-profiles-content-left
@@ -48,7 +48,7 @@ block content
                                                 p= story.date
                                                 p=  '•'  
                                                 p= `${story.readTimeMinutes} min read`
-                                                a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
+                                                a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
                                             .right-story-bookmark-info 
                                                 a(href="/bookmarks"): i(class="far fa-bookmark")
                                     .story-container-right 
