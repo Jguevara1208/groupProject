@@ -38,18 +38,18 @@ module.exports = (sequelize, DataTypes) => {
       as: 'followings'
     }
 
-    // const followerColumnMapping = {
-    //   through: 'Follow',
-    //   otherKey: 'userId',
-    //   foriegnKey: 'followingId',
-    //   as: 'followers'
-    // }
+    const followerColumnMapping = {
+      through: 'Follow',
+      otherKey: 'userId',
+      foreignKey: 'followingId',
+      as: 'followers'
+    }
 
     User.hasMany( models.Story, { foreignKey: 'userId' })
     User.hasMany( models.Comment, { foreignKey: 'userId' })
 
     User.belongsToMany( models.User, followingColumnMapping)
-    // User.belongsToMany( models.User, followerColumnMapping)
+    User.belongsToMany( models.User, followerColumnMapping)
 
     User.belongsToMany( models.Topic, likedTopicColumnMapping)
     User.belongsToMany( models.Story, likesColumnMapping)
