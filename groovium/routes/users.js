@@ -129,15 +129,39 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
 
 router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
-    const user = await User.findByPk(userId)
-    const story = await Story.findAll({
-        where: {
-            userId: userId
+    // const header = 'this is a test'
+
+    const user = await User.findByPk(userId, {
+        limit: 5,
+        include: [{
+            model: User,
+            as: 'followings',
+        }, {
+            model: Topic,
+            as: 'likedTopics',
+        }, {
+            model: Story,
         }
+
+    ]
     });
 
-    const topics = await Topic.findAll()
-    res.render('user-profile-page', { story, user, topics })
+    // console.log(user.followings[0].avatarUrl, "---------------")
+    // const followingsAvatars = user.followings.map(user => user.avatarUrl)
+    // console.log(user, "---------------")
+    console.log(user, "---------------")
+
+
+    // console.log(followingsAvatars, '<-----------')
+
+    // const story = await Story.findAll({
+    //     limit: 5,
+    //     where: {
+    //         userId: userId
+    //     }
+    // });
+
+    res.render('user-profile-page', { user })
 }));
 
 
