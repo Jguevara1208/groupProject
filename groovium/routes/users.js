@@ -4,10 +4,6 @@ const { asyncHandler } = require("../utils");
 const { User, Topic, Story} = require('../db/models');
 
 
-router.get('/delete', asyncHandler(async (req, res) => {
-    res.render('/delete')
-}))
-
 
 router.get('/', asyncHandler(async (req, res) => {
 
@@ -104,7 +100,13 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
 
     console.log(user.bookmark)
     res.render('my-stories', {user, newStories})
-}))
+}));
+
+router.get('/my-stories/new', asyncHandler(async (req, res) => {
+    const topics = await Topic.findAll()
+    console.log(topics)
+    res.render('new-story', { topics })
+  }));
 
 router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId

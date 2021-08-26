@@ -14,4 +14,5 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
   res.render('stories', { story, user, topic })
 }));
 
+
 module.exports = router;
