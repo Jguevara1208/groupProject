@@ -2,12 +2,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: rgba(143, 176, 169, .17);
 }
 
 .topic-page-outer-most-container{
   display: flex;
   width: 80%;
-  background-color: rgba(255, 255, 255, 0.17);
 }
 
 .topic-left-side-container {
@@ -52,7 +52,6 @@
 }
 
 
-
 .topic-description-container {
   text-align: center;
   border-top: 0.3px solid #000000;
@@ -62,6 +61,9 @@
   line-height: normal;
   letter-spacing: 0.06em;
   color: rgba(0, 0, 0, 0.46);
+  background-color: white;
+  margin: 5px;
+  padding: 10px;
 
 }
 .story-summary-container{
@@ -105,31 +107,34 @@
 .topic-followers-container {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  width: 10%;
   align-content: center;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
+  border-top:  0.3px solid #000000;
+  padding: 10px;
 }
 
 .topic-stories-list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.17);
+  background: rgba(143, 176, 169, .17);
   width: 80%;
+  padding: 10px;
 }
 
 .topic-stories-div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.17)
 }
 .topic-followers-and-other-topics {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
+  width: 80%;
+  justify-content: center;
 }
 
 .topic-followers-container {
@@ -147,8 +152,8 @@
   width: 600px;
   height: 145px;
   padding: 20px 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-  margin-top: 15px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 5%);
+  margin-top: 5px;
 }
 .story-summary-container {
   width: 60%;

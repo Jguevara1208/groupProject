@@ -29,9 +29,10 @@ router.get('/delete', asyncHandler(async (req, res) => {
 }))
 
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/:userId', asyncHandler(async (req, res) => {
 
-    const userId = req.session.auth.userId;
+    //const userId = req.session.auth.userId;
+    const userId = req.url.split("/")[1]
 
     const user = await User.findByPk(userId, {
         include: [{
@@ -43,7 +44,7 @@ router.get('/', asyncHandler(async (req, res) => {
         }]
     });
 
-    // console.log(user.likedTopics[0])
+     console.log(user.avatarUrl, "<------ user.avatarUrl")
 
     const followingsIds = user.followings.map(user => user.id)
     const feedStories = await Story.findAll({
