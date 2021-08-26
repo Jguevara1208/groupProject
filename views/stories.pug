@@ -1,34 +1,89 @@
 extends layout.pug
 block content
-  .outer-most-div-container
-    .title-owner-summary-icons-container
-      .title-and-summary-container
-        h1(id="story-title") !{story.title}
-        h4(id="story-summary") !{story.summary}
-        p(id="story-readtime") !{story.readTimeMinutes} min read
-        a(id="story-topic-link" href=`/topic/${topic.id}`) !{topic.topic}
-      .owner-container
-        .owner-img-div
-          a(href=`/users/${user.id}`)
-            img(id="owner-image" src=`${user.dataValues.avatarUrl}`)
-        .owner-name-div
-          p !{user.dataValues.firstName}
-          p !{user.dataValues.lastName}
-        button(form="?" action="?") Follow
-      .icons-container
-        a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
-    .story-image-and-content-container
-      .story-image-div
-        img(id="story-image" src=`${story.storyImgUrl}`)
-      .story-content-div
-        p !{story.body}
-    .comments-sections-container
-      .comments-container
-        .comments-title-div
-          h3(id="comments-title") Responses
-        .comment-textarea-div
-          textarea(id="comment-textarea")
-        .comment-submit-cancel-buttons-div
-          button(id="cancel-comment-button") Cancel
-          button(id="send-comment-button") Send It
-        .comments-div
+    .story-page-container
+        .story-page-wrapper 
+            .story-page-left-container
+              .story-page-left
+                .story-page-header-left
+                  .story-page-user-info
+                    .story-page-avatar-container 
+                      a(href=`/users/${user.id}`): .story-page-avatar-img(style=`background-image: url('${user.avatarUrl}')`)
+                    .story-page-author-name 
+                      p= `${user.firstName} ${user.lastName}`
+                    .story-page-follow-button-container
+                      a(class="aNoUnderLine follow" href=``): .follow-button-container Follow
+                .story-page-header-content
+                  .story-page-title
+                    h3= story.title 
+                  .story-page-summary 
+                    p= story.summary
+                  .story-page-topic-icon-container 
+                    .story-page-topic-container
+                      a(class="anchorNoUnderline splash-story-topic" href=`/topics/${topic.id}`)= topic.topic
+                    .story-page-icon-container
+                      a(href=""): i(class="far fa-thumbs-up")
+                      a(href="/bookmarks"): i(class="far fa-bookmark")
+              .story-page-content-left 
+                .story-page-story-div
+                  .story-page-story-photo(style=`background-image: url('${story.storyImgUrl}')`)
+                  .story-page-story-body
+                    p= story.body
+
+                          
+                            
+            .story-page-right-container
+                .story-page-right
+                    .story-page-header-right
+                        .story-page-header-text-right
+                            p Comments
+                    .story-page-comment-container 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//- extends layout.pug
+//- block content
+//-   .outer-most-div-container
+//-     .title-owner-summary-icons-container
+//-       .title-and-summary-container
+//-         h1(id="story-title") !{story.title}
+//-         h4(id="story-summary") !{story.summary}
+//-         p(id="story-readtime") !{story.readTimeMinutes} min read
+//-         a(id="story-topic-link" href=`/topic/${topic.id}`) !{topic.topic}
+//-       .owner-container
+//-         .owner-img-div
+//-           a(href=`/users/${user.id}`)
+//-             img(id="owner-image" src=`${user.dataValues.avatarUrl}`)
+//-         .owner-name-div
+//-           p !{user.dataValues.firstName}
+//-           p !{user.dataValues.lastName}
+//-         button(form="?" action="?") Follow
+//-       .icons-container
+//-         a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
+//-     .story-image-and-content-container
+//-       .story-image-div
+//-         img(id="story-image" src=`${story.storyImgUrl}`)
+//-       .story-content-div
+//-         p !{story.body}
+//-     .comments-sections-container
+//-       .comments-container
+//-         .comments-title-div
+//-           h3(id="comments-title") Responses
+//-         .comment-textarea-div
+//-           textarea(id="comment-textarea")
+//-         .comment-submit-cancel-buttons-div
+//-           button(id="cancel-comment-button") Cancel
+//-           button(id="send-comment-button") Send It
+//-         .comments-div
