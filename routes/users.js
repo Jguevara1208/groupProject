@@ -107,7 +107,18 @@ router.get('/:userId/my-stories', asyncHandler(async (req, res) => {
         }
     })
 
-    //console.log(user.bookmark[0].title)
+    console.log(user.bookmark)
+    res.render('my-stories', {user, newStories})
+}))
+
+router.get('/my-stories/new', asyncHandler(async (req, res) => {
+    const topics = await Topic.findAll()
+    console.log(topics)
+    res.render('new-story', { topics })
+}));
+
+router.get('/:userId', asyncHandler(async (req, res) => {
+    const userId = req.params.userId
 
 
     res.render('my-stories', {user, newStories})
