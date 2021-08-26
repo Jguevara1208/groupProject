@@ -49,4 +49,4 @@ block content
                                             p= bookmark.summary
                                     .bookmark-container-right 
                                         a(href=`/stories/${bookmark.id}`): div(class="bookmark-story-img" style=`background-image: url('${bookmark.storyImgUrl}')`)
-                                a(): i(class="fas fa-ban")
+                                a(href="" value=bookmark.id): i(class="fas fa-ban")
