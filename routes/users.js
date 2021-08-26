@@ -146,7 +146,12 @@ router.get('/:userId', asyncHandler(async (req, res) => {
         }
     })
 
-    res.render('other-profiles-page', { user, newStories })
+    if (req.params.userId == req.session.auth.userId) {
+        res.redirect('/users/my-stories')
+    } else {
+        res.render('other-profiles-page', { user, newStories })
+    }
+
 }));
 
 
