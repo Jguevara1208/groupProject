@@ -146,7 +146,6 @@
 
 .other-profiles-follows-container {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     row-gap: 10px;
     column-gap: 10px;

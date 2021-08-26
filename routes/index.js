@@ -89,13 +89,10 @@ router.post('/log-in', loginValidators, csrfProtection, loginValidators, asyncHa
       const user = await User.findOne({ where: { email } });
 
       if (user !== null) {
-        console.log(user.id);
-        //const passwordMatch = await bcrypt.compare(password, user.hashedPassword);
-        const passwordMatch = (password === user.hashedPassword);
+        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
         if (passwordMatch) {
-          console.log("passwords match!")
           loginUser(req, res, user)
-          return res.redirect('/users/' + user.id);
+          return res.redirect('/users');
         }
       }
 
