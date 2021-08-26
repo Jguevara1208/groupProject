@@ -129,7 +129,6 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
 
 router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
-    // const header = 'this is a test'
 
     const user = await User.findByPk(userId, {
         limit: 5,
@@ -141,27 +140,34 @@ router.get('/:userId', asyncHandler(async (req, res) => {
             as: 'likedTopics',
         }, {
             model: Story,
+            include: [User, Topic]
         }
-
     ]
     });
 
-    // console.log(user.followings[0].avatarUrl, "---------------")
-    // const followingsAvatars = user.followings.map(user => user.avatarUrl)
-    // console.log(user, "---------------")
-    console.log(user, "---------------")
+    const newStories = user.Stories.map(story => {
+        const date = story.createdAt
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const newDate = `${month}-${day}`
 
+        return {
+            id: story.id,
+            title: story.title,
+            userId: user.id,
+            avatarUrl: user.avatarUrl,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            summary: story.summary,
+            date: newDate,
+            readTimeMinutes: story.readTimeMinutes,
+            topicId: story.topicId,
+            topic: story.Topic.topic,
+            storyImgUrl: story.storyImgUrl
+        }
+    })
 
-    // console.log(followingsAvatars, '<-----------')
-
-    // const story = await Story.findAll({
-    //     limit: 5,
-    //     where: {
-    //         userId: userId
-    //     }
-    // });
-
-    res.render('user-profile-page', { user })
+    res.render('other-profiles-page', { user, newStories })
 }));
 
 
