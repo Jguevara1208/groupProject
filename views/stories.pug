@@ -37,53 +37,35 @@ block content
                         .story-page-header-text-right
                             p Comments
                     .story-page-comment-container 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//- extends layout.pug
-//- block content
-//-   .outer-most-div-container
-//-     .title-owner-summary-icons-container
-//-       .title-and-summary-container
-//-         h1(id="story-title") !{story.title}
-//-         h4(id="story-summary") !{story.summary}
-//-         p(id="story-readtime") !{story.readTimeMinutes} min read
-//-         a(id="story-topic-link" href=`/topic/${topic.id}`) !{topic.topic}
-//-       .owner-container
-//-         .owner-img-div
-//-           a(href=`/users/${user.id}`)
-//-             img(id="owner-image" src=`${user.dataValues.avatarUrl}`)
-//-         .owner-name-div
-//-           p !{user.dataValues.firstName}
-//-           p !{user.dataValues.lastName}
-//-         button(form="?" action="?") Follow
-//-       .icons-container
-//-         a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
-//-     .story-image-and-content-container
-//-       .story-image-div
-//-         img(id="story-image" src=`${story.storyImgUrl}`)
-//-       .story-content-div
-//-         p !{story.body}
-//-     .comments-sections-container
-//-       .comments-container
-//-         .comments-title-div
-//-           h3(id="comments-title") Responses
-//-         .comment-textarea-div
-//-           textarea(id="comment-textarea")
-//-         .comment-submit-cancel-buttons-div
-//-           button(id="cancel-comment-button") Cancel
-//-           button(id="send-comment-button") Send It
-//-         .comments-div
+                      .comment-number-div 
+                        p= `Responses (${commentNumber})`
+                      .comment-form-div 
+                        form(action='stories/:id/comments' method='POST')
+                          .comment-text-area-container
+                            textarea(class="comment-text-area" name="comment" placeholder='What are your thoughts?')
+                          .comment-text-area-button-container 
+                            button(id="submit-button" type="submit"): i(class="far fa-paper-plane")
+                      .story-comments-div
+                        each comment in comments
+                          if (userId === comment.userId)
+                            .story-comment 
+                              .story-comment-info-wrapper
+                                .story-comment-left-div
+                                  .commenter-avatar(style=`background-image: url('${comment.avatarUrl}')`)
+                                  .commenter-info 
+                                    p= `${comment.firstName}`
+                                    p= comment.date
+                                  .story-comment-right-div 
+                                    a(href=''): i(class="far fa-edit")
+                                    a(href=''): i(class="far fa-times-circle")
+                              .story-comment-body-wrapper 
+                                p= comment.content
+                          else
+                            .story-comment 
+                              .story-comment-info-wrapper
+                                a(href=`/users/${comment.userId}`): .commenter-avatar(style=`background-image: url('${comment.avatarUrl}')`)
+                                .commenter-info 
+                                  a(class="aNoUnderline" href=`/users/${comment.userId}`)= `${comment.firstName}`
+                                  p= comment.date
+                              .story-comment-body-wrapper 
+                                p= comment.content

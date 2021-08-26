@@ -21,11 +21,12 @@ html(lang="en")
         title Groovium
     body
         nav
-            div#logoDiv
             if authenticated 
-                a(href="/users"): img(src='/logos/logo.png')
+                div#logoDiv
+                    a(href="/users"): img(src='/logos/logo.png')
             else 
-                a(href="/"): img(src='/logos/logo.png')
+                div#logoDiv
+                    a(href="/"): img(src='/logos/logo.png')
             if authenticated
                 div
                     a(href="/users/my-stories"): img(id="navBM" src="/logos/bookmark_add_black_24dp 7.png")
