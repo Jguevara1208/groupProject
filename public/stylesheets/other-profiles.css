@@ -147,8 +147,10 @@
 .other-profiles-follows-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     row-gap: 10px;
     column-gap: 10px;
+    width: 70%
 }
 .other-profiles-topics-container {
     display: flex;

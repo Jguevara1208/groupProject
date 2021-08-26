@@ -64,7 +64,7 @@ router.post('/sign-up', csrfProtection, signupValidators, asyncHandler(async(req
   if (validatorErrors.isEmpty()) {
     await user.save();
     loginUser(req, res, user)
-    return res.redirect('/users');
+    return req.session.save(() => res.redirect('/users'));
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('sign-up', {
@@ -92,7 +92,7 @@ router.post('/log-in', loginValidators, csrfProtection, loginValidators, asyncHa
         const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
         if (passwordMatch) {
           loginUser(req, res, user)
-          return res.redirect('/users');
+          return req.session.save(() => res.redirect('/users'));
         }
       }
 

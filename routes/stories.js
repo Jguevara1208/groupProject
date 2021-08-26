@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require("../utils")
 const { Story, User, Topic, Comment } = require("../db/models");
-const csrf = require('csurf')
-const csrfProtection = csrf({ cookie: true });
 
 
 router.get('/:storyId', asyncHandler(async (req, res) => {
