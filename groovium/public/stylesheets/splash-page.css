@@ -1,12 +1,9 @@
 a {
     font-family: 'Montserrat Alternates';
 }
-body, html{
+body {
     font-family: 'Montserrat Alternates';
-    height: 100%;
-    overflow: auto;
 }
-
 #groovium {
     font-family: 'Lobster';
 }
@@ -208,6 +205,7 @@ body, html{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 .splash-topics-div > h3 {

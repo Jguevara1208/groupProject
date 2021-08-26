@@ -43,7 +43,6 @@ router.get('/', asyncHandler(async (req, res) => {
         }]
     });
 
-    // console.log(user.likedTopics[0])
 
     const followingsIds = user.followings.map(user => user.id)
     const feedStories = await Story.findAll({
