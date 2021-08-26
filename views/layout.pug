@@ -21,10 +21,10 @@ html(lang="en")
         title Groovium
     body
         nav
-            if authenticated 
+            if authenticated
                 div#logoDiv
                     a(href="/users"): img(src='/logos/logo.png')
-            else 
+            else
                 div#logoDiv
                     a(href="/"): img(src='/logos/logo.png')
             if authenticated

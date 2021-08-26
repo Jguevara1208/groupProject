@@ -1,109 +1,51 @@
 extends layout.pug
 block content
+  html
+    head
+      link(rel='stylesheet', href='/stylesheets/home.css')
+    body
+        div.viewAllTopics
+        a(class="home-viewAllTopics-anchor" href="/topics") View All Topics
 
-    .user-home-container
-        .user-home-wrapper
-            .user-home-left-container
-                .user-home-left
-                    .user-home-header-left
-                        .user-home-header-level-one
-                            .user-home-text-container
-                                p Your topics
-                            .user-home-header-topics-container
-                                each topic in user.likedTopics
-                                    a(class="anchorNoUnderline splash-story-topic" href=`/topics/${topic.id}`)= topic.topic
-                            .user-home-text-right
-                                a(href="/topics") View All Topics
-                        .user-home-header-level-two
-                            .user-home-text-container
-                                p Following
-                            .user-home-header-following-container
-                                each following in user.followings
-                                    a.home-following-avatar-anchor(href=`/users/${following.id}`): .home-following-avatar-image(style=`background-image: url("${following.avatarUrl}")`)
-                .user-home-content-left
-                    .user-home-feed-text 
-                        p Your Feed
-                    .user-home-stories-div
-                        each story in newStories
-                            .story-container
-                                .story-container-left
-                                    .avatar-and-name
-                                        a(href=`/users/${story.userId}`): div(class="splash-avatar-img" style=`background-image: url('${story.avatarUrl}')`)
-                                        a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
-                                    .story-title
-                                        a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
-                                    .story-summary
-                                        p= story.summary
-                                    .story-info
-                                        .left-story-info
-                                            p= story.date
-                                            p=  '•'
-                                            p= `${story.readTimeMinutes} min read`
-                                            a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
-                                        .right-story-bookmark-info
-                                            a(href=`/bookmarks`): i(class="far fa-bookmark")
-                                .story-container-right
-                                    a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
-            .user-home-right-container
-                .user-home-right
-                    .user-home-header-right
-                        .user-home-header-text-right
-                            p My Profile
-                        .my-avatar-image(style=`background-image: url('https://i.pinimg.com/originals/ff/75/88/ff75888cb867d4c7ff3a8c1e4fee6795.jpg')`)
-                        .div-for-line
-                            a(class="aNoUnderLine write" href=`/my-stories/new`): .start-writing-button-container Start Writing
-                    .my-stories-div
-                        each story in myStories
-                            .myStory-container-wrapper
-                                .myStory-container
-                                    .myStory-container-left
-                                        .myStory-title
-                                            a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
-                                        .myStory-summary
-                                            p= story.summary
-                                    .myStory-container-right
-                                        a(href=`/stories/${story.id}`): div(class="story-story-img" style=`background-image: url('${story.storyImgUrl}')`)
+        div.myTopics
+            each topic in user.likedTopics
+                a(class="home-topic-anchor" href=`/topics/${topic.id}`)=topic.topic
+
+        div.following
+            each following in user.followings
+                a(class="home-following-avatar-anchor" href=`/users/${following.id}`): div(class="home-following-avatar-image" style=`background-image: url("${following.avatarUrl}")`)
+
+        div.myFeed
+        h3 My Feed
+            div.home-stories-div
+                each story in newStories
+                    div.story-container
+                        div.story-container-left
+                            div.avatar-and-name
+                                div(class="splash-avatar-img" style=`background-image: url('${story.avatarUrl}')`)
+                                a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
+                            div.story-title
+                                a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
+                            div.story-summary
+                                p= story.summary
+                            div.story-info
+                                div.left-story-info
+                                    p= story.date
+                                    p=  '•'
+                                    p= `${story.readTimeMinutes} min read`
+                                    a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
+                                div.right-story-info
+                                    a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
+                        div.story-container-right
+                            a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
 
 
+        div.myStories
+            each story in newStories
+                a(class="home-feed-anchor" href=`/users/${story.userId}`) Story
 
-//- extends layout.pug
-//- block content
-//-         div.viewAllTopics
-//-         a(class="home-viewAllTopics-anchor" href="/topics") View All Topics
-
-//-         div.myTopics
-//-             each topic in user.likedTopics
-//-                 a(class="home-topic-anchor" href=`/topics/${topic.id}`)=topic.topic
-
-//-         div.following
-//-             each following in user.followings
-//-                 a(class="home-following-avatar-anchor" href=`/users/${following.id}`): div(class="home-following-avatar-image" style=`background-image: url("${following.avatarUrl}")`)
-
-//-         div.myFeed
-//-         h3 My Feed
-//-             div.home-stories-div
-//-                 each story in newStories
-//-                     div.story-container
-//-                         div.story-container-left
-//-                             div.avatar-and-name
-//-                                 div(class="splash-avatar-img" style=`background-image: url('${story.avatarUrl}')`)
-//-                                 a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
-//-                             div.story-title
-//-                                 a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
-//-                             div.story-summary
-//-                                 p= story.summary
-//-                             div.story-info
-//-                                 div.left-story-info
-//-                                     p= story.date
-//-                                     p=  '•'
-//-                                     p= `${story.readTimeMinutes} min read`
-//-                                     a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
-//-                                 div.right-story-info
-//-                                     a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")
-//-                         div.story-container-right
-//-                             a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
-
-
-//-         div.myStories
-//-             each story in newStories
-//-                 a(class="home-feed-anchor" href=`/users/${story.userId}`) Story
+                //- = story.User.firstName
+                //- = story.Topic.id
+                //- = story.Topic.topic
+                //- = story.title
+                //- = story.summary
