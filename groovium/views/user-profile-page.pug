@@ -2,15 +2,40 @@ extends layout.pug
 block content
   .outer-most-container
     .left-container
-        .avatar
-            img(id="user-avatar" src=user.avatarUrl)
-        .follow-me
-            a(id="get-started-button" class="anchorNoUnderline" href="/sign-up") Follow Me
-        .name
-            p #{user.firstName} #{user.lastName}
-        .bio
-            p #{user.shortBio}
-        .follows 5
-        .topics 6
-    .right-container 7
-        .user-stories 8
+        .dontsmushprofile
+            a(href=`${user.id}`): .avatar(style=`background-image: url("${user.avatarUrl}")` class="avatarbox")
+
+            //- img(id="user-avatar" src=user.avatarUrl)
+            //- - var url = #{user.firstName};
+            //- a(href='/' + url)
+            .follow-me
+                a(id="follow-me-button" class="anchorNoUnderline" href=`${user.id}/follow`) Follow Me
+        .dontsmushnamebio
+            .name
+                p #{user.firstName} #{user.lastName}
+            .bio
+                p #{user.shortBio}
+        .dontsmushfollows
+            .follows
+                //- each pic in followingsAvatars
+                //-     .avatar(style=`background-image: url("${pic}")` class="followbox")
+                each followedUser in user.followings
+                    //- p #{followedUser.avatarUrl}
+                    a(href=`${followedUser.id}`): .avatar(style=`background-image: url("${followedUser.avatarUrl}")` class="followbox")
+        .dontsmushtopics
+            .topics
+                each topic in user.likedTopics
+                    //- p #{topic.imageUrl}
+                    a(id="topic-liked-button" class="anchorNoUnderline" href=`/topics/${topic.id}`) #{topic.topic}
+
+    .right-container !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        .right-name-label
+            p #{user.firstName} #{user.lastName}'s Stories!
+        .user-stories
+            each story in user.Stories
+                //- p #{story.id}
+                p #{story.title}
+                p #{story.summary}
+                //- p #{story.body}
+                p #{story.readTimeMinutes}
+                .avatar(style=`background-image: url("${story.storyImgUrl}")` class="followbox")
