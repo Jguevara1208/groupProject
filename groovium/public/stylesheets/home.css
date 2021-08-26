@@ -188,7 +188,7 @@
     font-size: 13px;
     text-align: center;
 }
-
+/* 
 .my-stories-div {
     display: flex;
     width: 100%;
@@ -196,7 +196,7 @@
     align-items: center;
     row-gap: 20px;
     transform: translateY(80px);
-}
+} */
 
 .myStory-container {
     display: flex;

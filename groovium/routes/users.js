@@ -4,26 +4,6 @@ const { asyncHandler } = require("../utils");
 const { User, Topic, Story} = require('../db/models');
 
 
-    // user.firstName
-
-    // each following in user.followings
-    //     following.id
-    //     following.avatarUrl
-
-    // each topic in user.likedTopics
-    //     topic.topic
-    //     topic.id
-
-    // each story in feedStories
-    //     story.User.firstName
-    //     story.Topic.id
-    //     story.Topic.topic
-    //     story.title
-    //     story.summary
-
-    // each myStory in myStories
-    //     myStory.title
-
 router.get('/delete', asyncHandler(async (req, res) => {
     res.render('/delete')
 }))
@@ -122,7 +102,7 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
         }
     })
 
-    console.log(user.bookmark[0].title)
+    console.log(user.bookmark)
     res.render('my-stories', {user, newStories})
 }))
 
