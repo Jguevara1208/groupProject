@@ -1,13 +1,59 @@
 extends layout.pug
 block content
-  .outer-most-container
-    .topic-name-and-description-container
-      .topic-name-and-follow-button-container
-        h2(id="topic-name") !{topic.topic}
-      .topic-description-container
-      .other-topics-container
-    .topic-title-and-image-container
-      .topic-title-div
-        h3(id="topic-title") !{topic.topic}
-      .topic-image-div
-        img(id="topic-image" src=topic.imageUrl)
+  .topic-outer-wrapper
+    .topic-page-outer-most-container
+      .topic-left-side-container
+        .topic-name-and-description-container
+          .topic-name-and-follow-button-container
+            button(id="add-topic" form="?" action="?") Add Topic
+            h2(id="topic-name") !{topic.topic}
+          .topic-description-container
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Varius sit amet mattis vulputate enim nulla aliquet. Vitae purus faucibus ornare suspendisse sed nisi lacus sed. Tellus cras adipiscing enim eu. Hendrerit gravida rutrum quisque non tellus orci ac auctor augue.
+        .topic-followers-and-other-topics
+          .topic-followers-container
+            each follower in followers
+              a(id="follower-image")
+                .topic-follower-avatar(class="splash-avatar-img" style=`background-image: url('${follower.avatarUrl}')`)
+      .topic-main-content-container
+        .topic-title-and-image-container
+          .topic-image-container(style=`background-image: url('${topic.imageUrl}')`)
+          .topic-title-div
+            h2(id="topic-title") !{topic.topic} Stories
+        .topic-stories-list-container
+          .topic-stories-div
+            each story in newStories
+              .topic-story-container
+                .story-container-left
+                  .avatar-and-name
+                    a(id="user-avatar-link")
+                     div(class="splash-avatar-img" style=`background-image: url(${story.avatarUrl})`)
+                    a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
+                  .story-title
+                    a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
+                  .topic-story-summary
+                    p= story.summary
+                  .story-info
+                    .left-story-info
+                      p= story.date
+                      p=  '•'
+                      p= `${story.readTimeMinutes} min read`
+                      a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
+                    .right-story-bookmark-info
+                      a(href=`/my-stories/${story.id}/edit`): i(class="far fa-edit")
+                      a(href=`users/my-stories/${story.id}/delete`): i(class="far fa-trash-alt")
+                .story-container-right
+                    a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
+          //- .topic-stories-list
+          //-   each story in stories
+          //-     .topic-story-container
+          //-       a(id="story-title" href="/stories/" + story.id)
+          //-         h2 !{story.title}
+          //-       .story-image-container
+          //-         a(id="story-image" href="/stories/" + story.id)
+          //-           .story-image(style=`background-image: url('${story.storyImgUrl}')`)
+          //-       .story-summary-container
+          //-         p !{story.summary}
+          //-       .story-footnotes
+          //-         p !{story.createdAt.toDateString()}
+          //-         p !{topic.topic}
+          //-         a(href="/bookmarks"): img(class="splash-bookmark-img" src="/logos/bookmark-red.png")

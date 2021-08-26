@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       through: 'LikedTopic',
       foreignKey: 'topicId',
       otherKey: 'userId',
-      as: 'likedTopics'
+      as: 'topicLikes'
     }
 
     Topic.belongsToMany( models.User, likedTopicColumnMapping)
