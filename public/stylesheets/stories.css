@@ -204,12 +204,14 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    width: 100%;
 }
 
 .story-comment {
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
     padding: 15px;
+    width: 90%;
 }
 
 .story-comment-info-wrapper {
@@ -234,8 +236,20 @@
 }
 
 .story-comment-body-wrapper {
+    display: flex;
     border-bottom: 1px solid rgba(0, 0, 0, .25);
     font-size: 12px;
+    text-overflow: clip;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+}
+
+.story-comment-body-wrapper > p {
+    word-wrap: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
 }
 
 .comment-text-area-container, .comment-text-area-button-container {
@@ -299,4 +313,17 @@ form {
 
 #like-count {
     margin: 0px 10px;
+}
+.story-comment-left-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.other-container {
+    display: flex;
+}
+
+.story-comment-right-div {
+    margin-right: 50px;
 }

@@ -27,18 +27,13 @@ block content
                           a: i(id=`likes-${story.id}` class="far fa-thumbs-up")
                         else 
                           a: i(id=`likes-${story.id}` class="fas fa-thumbs-up")
-                        
                       .story-page-bookmark
                         a(href="/bookmarks"): i(class="far fa-bookmark")
               .story-page-content-left 
-
                 .story-page-story-div
                   .story-page-story-photo(style=`background-image: url('${story.storyImgUrl}')`)
                   .story-page-story-body
                     p= story.body
-
-
-
             .story-page-right-container
                 .story-page-right
                     .story-page-header-right
@@ -48,24 +43,25 @@ block content
                       .comment-number-div
                         p= `Responses (${commentNumber})`
                       .comment-form-div
-                        form(action=`/stories/${story.id}/comments/new` method='POST')
+                        form(action=`/stories/${story.id}/comments/new` method='POST' id="comment-form")
                           .comment-text-area-container
                             textarea(class="comment-text-area" name="content" placeholder='What are your thoughts?')
+                            input(type="hidden") 
                           .comment-text-area-button-container
                             button(id="submit-button" type="submit"): i(class="far fa-paper-plane")
                       .story-comments-div
                         each comment in comments
                           if (userId === comment.userId)
-                            .story-comment
+                            .story-comment(id=`comment-container-${comment.id}`)
                               .story-comment-info-wrapper
                                 .story-comment-left-div
-                                  .commenter-avatar(style=`background-image: url('${comment.avatarUrl}')`)
-                                  .commenter-info
-                                    p= `${comment.firstName}`
-                                    p= comment.date
+                                  .other-container
+                                    .commenter-avatar(style=`background-image: url('${comment.avatarUrl}')`)
+                                    .commenter-info
+                                      p= `${comment.firstName}`
+                                      p= comment.date
                                   .story-comment-right-div
-                                    a(href=''): i(class="far fa-edit")
-                                    a(href=''): i(class="far fa-times-circle")
+                                    i(class="far fa-times-circle" id=`comment-${comment.id}`)
                               .story-comment-body-wrapper
                                 p= comment.content
                           else
