@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require("../utils");
 const { User, Topic, Story} = require('../db/models');
+const csrf = require('csurf')
+const csrfProtection = csrf({ cookie: true });
 
 
 router.get('/delete', asyncHandler(async (req, res) => {
@@ -108,9 +110,37 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
 
 router.get('/my-stories/new', asyncHandler(async (req, res) => {
     const topics = await Topic.findAll()
-    console.log(topics)
+    // console.log(topics)
     res.render('new-story', { topics })
 }));
+
+router.post('/my-stories/new', asyncHandler(async(req, res) => {
+
+
+    const { title, body, storyImgUrl, topicId } = req.body;
+    const userId = req.session.auth.userId
+
+    console.log('-------------------------------------------------')
+    console.log(req.body)
+    console.log(userId)
+
+    console.log(body, "--------------------------------")
+
+
+    //change to build and save later after validations
+    const post = await Story.create({
+        userId,
+        topicId,
+        title,
+        body,
+        storyImgUrl
+    });
+
+
+    res.redirect('/users/my-stories')
+
+}));
+
 
 router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
