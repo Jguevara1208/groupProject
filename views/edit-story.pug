@@ -46,7 +46,10 @@ html(lang="en")
                                 div.publish-input-div
                                     select(name='topicId')
                                         each top in topics
-                                            option(value=`${top.id}`)=top.topic
+                                            if (top.id === story.topicId)
+                                                option(name="topicId" value=top.id selected)=top.topic
+                                            else
+                                                option(value=`${top.id}`)=top.topic
                                 div(class="publish-input-button-div")
                                     button(class="publish-submit-button" type="submit") Edit
                                 div(class="publish-input-button-div")
