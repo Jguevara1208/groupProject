@@ -21,9 +21,17 @@ block content
                     .story-page-topic-container
                       a(class="anchorNoUnderline splash-story-topic" href=`/topics/${topic.id}`)= topic.topic
                     .story-page-icon-container
-                      a(href=""): i(class="far fa-thumbs-up")
-                      a(href="/bookmarks"): i(class="far fa-bookmark")
-              .story-page-content-left
+                      .story-page-likes
+                        p(id='like-count')= ''
+                        if (like === null)
+                          a: i(id=`likes-${story.id}` class="far fa-thumbs-up")
+                        else 
+                          a: i(id=`likes-${story.id}` class="fas fa-thumbs-up")
+                        
+                      .story-page-bookmark
+                        a(href="/bookmarks"): i(class="far fa-bookmark")
+              .story-page-content-left 
+
                 .story-page-story-div
                   .story-page-story-photo(style=`background-image: url('${story.storyImgUrl}')`)
                   .story-page-story-body

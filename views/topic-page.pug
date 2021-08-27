@@ -45,7 +45,6 @@ block content
                       p= `${story.readTimeMinutes} min read`
                       a(class="splash-story-topic" href=`/stories/${story.topicId}`)= story.topic
                     .topic-story-icons-container
-                      a(href=`/users/my-stories/${story.id}/edit`): i(id="topic-story-thumb" class="far fa-thumbs-up")
                       a(href=`/users/my-stories/${story.id}/delete`): i(id="topic-story-bookmark" class="far fa-bookmark")
                 .story-container-right
                     a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)

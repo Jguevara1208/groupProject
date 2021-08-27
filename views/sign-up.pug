@@ -20,29 +20,53 @@ html(lang="en")
                         form(action="/sign-up" method="POST")
                             input(type="hidden" name="_csrf" value=csrfToken)
                             div.form-input-div
+                                if errors
+                                    each error in errors 
+                                        if error.field === 'firstName'
+                                            p(class="error")= `• ${error.error}`
                                 label(for="firstName") First Name
                                 input(type="text" name="firstName" value=firstName)
                             div.form-input-div
+                                if errors
+                                    each error in errors 
+                                        if error.field === 'lastName'
+                                            p(class="error")= `• ${error.error}`
                                 label(for="lastName") Last Name
                                 input(type="text" name="lastName" value=lastName)
                             div.form-input-div
+                                if errors
+                                    each error in errors 
+                                        if error.field === 'email'
+                                            p(class="error")= `• ${error.error}`
                                 label(for="email") Email Address
                                 input(type="email" name="email" value=email)
                             div.form-input-div
+                                if errors
+                                    each error in errors 
+                                        if error.field === 'avatarUrl'
+                                            p(class="error")= `• ${error.error}`
                                 label(for="avatarUrl") Avatar Image
                                 input(type="text" name="avatarUrl" value=avatarUrl)
                             div.form-input-div
                                 label(for="shortBio") Short Bio
                                 textarea(class="form-text-area" name="shortBio" value=shortBio)
                             div.form-input-div
+                                if errors
+                                    each error in errors 
+                                        if error.field === 'password'
+                                            p(class="error")= `• ${error.error}`
                                 label(for="password") Password
                                 input(type="password" name="password")
                             div.form-input-div
+                                if errors
+                                    each error in errors 
+                                        if error.field === 'confirmedPassword'
+                                            p(class="error")= `• ${error.error}`
                                 label(for="confirmedPassword") Confirm Password
                                 input(type="password" name="confirmedPassword")
                             div(class="form-input-button-div")
                                 button(class="form-submit-button" type="submit") Sign Up
                             div.form-input-div
-                                p Already have an account?
+                                p(id="already-have" ) Already have an account?
                                     span: a(class="anchorNoUnderline form-change-anchor" href='/log-in') Log In
             div.form-page-side-divs
