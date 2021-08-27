@@ -14,16 +14,17 @@ html(lang="en")
         style: include ../public/stylesheets/other-profiles.css
         style: include ../public/stylesheets/splash-page.css
         style: include ../public/stylesheets/topic-page.css
+        style: include ../public/stylesheets/topics-list-page.css
         style: include ../public/stylesheets/home.css
         style: include ../public/stylesheets/stories.css
         script: include ../public/javascripts/likes.js
         title Groovium
     body
         nav
-            if authenticated 
+            if authenticated
                 div#logoDiv
                     a(href="/users"): img(src='/logos/logo.png')
-            else 
+            else
                 div#logoDiv
                     a(href="/"): img(src='/logos/logo.png')
             if authenticated
