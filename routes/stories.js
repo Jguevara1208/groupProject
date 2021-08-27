@@ -39,10 +39,16 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
 }));
 
 router.post('/:storyId/comments/new', asyncHandler(async (req, res) => {
+  console.log("Hiiiiiiiii!!!!!!!!!!!!!!")
+  const { content } = req.body
+  console.log(content, "<-----------content")
   const userId = req.session.auth.userId
   const storyId = req.params.storyId
-  const story = await Story.findByPk(storyId)
-  const comments = await Comment.findAll()
-  const newComment = await Comment.create()
+  const newComment = await Comment.create({
+    content,
+    userId,
+    storyId
+  })
+  res.redirect("/stories/" + storyId)
 }))
 module.exports = router;
