@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler } = require("../utils")
-const { Story, User, Topic, Comment } = require("../db/models");
+const { asyncHandler} = require("../utils")
+const { Story, User, Topic, Comment, Like} = require("../db/models");
+const { requireAuth } = require("../auth")
 
 
-router.get('/:storyId', asyncHandler(async (req, res) => {
+router.get('/:storyId', requireAuth, asyncHandler(async (req, res) => {
   const userId = req.session.auth.userId
   const storyId = req.params.storyId
   const story = await Story.findByPk(storyId)
@@ -36,5 +37,38 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
   console.log(commentsArr)
   res.render('stories', { userId, story, user, topic, comments, commentNumber})
 }));
+
+router.get('/:id/comments', asyncHandler(async(req, res) => {}))
+router.post('/:id/comments', asyncHandler(async(req, res) => {}))
+router.delete('/:id/comments', asyncHandler(async(req, res) => {}))
+router.patch('/:id/comments', asyncHandler(async(req, res) => {}))
+
+
+router.get('/:id/likes', asyncHandler(async(req, res) => {
+  const storyId = req.params.id
+  const likes = await Like.findAll({
+    where: {
+      storyId
+    }
+  })
+
+  res.json(likes.length)
+}))
+router.post('/:id/likes', asyncHandler(async(req, res) => {
+  const storyId = req.params.id
+  const userId = req.session.auth.userId
+  await Like.create({
+    userId,
+    storyId
+  })
+  const likes = await Like.findAll({
+    where: {
+      storyId
+    }
+  })
+  res.json(likes.length)
+}))
+router.delete('/:id/likes', asyncHandler(async(req, res) => {}))
+
 
 module.exports = router;

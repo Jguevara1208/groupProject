@@ -2,15 +2,16 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require("../utils")
 const { Topic, Story, User } = require("../db/models");
+const { requireAuth } = require("../auth")
 
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', requireAuth, asyncHandler(async (req, res) => {
     const topics = await Topic.findAll()
     res.render('topics-list', { topics })
 }))
 
 
-router.get('/:topicId', asyncHandler(async (req, res) => {
+router.get('/:topicId', requireAuth, asyncHandler(async (req, res) => {
     const topicId = req.params.topicId
     const topic = await Topic.findByPk(topicId)
     const stories = await Story.findAll({

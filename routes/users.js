@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require("../utils");
 const { User, Topic, Story} = require('../db/models');
-
+const { requireAuth } = require("../auth")
 
 router.get('/delete', asyncHandler(async (req, res) => {
     res.render('/delete')
 }))
 
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', requireAuth, asyncHandler(async (req, res) => {
 
     const userId = req.session.auth.userId;
 
@@ -65,7 +65,7 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('home', {user, myStories, newStories})
 }));
 
-router.get('/my-stories', asyncHandler(async (req, res) => {
+router.get('/my-stories', requireAuth, asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId
     const user = await User.findByPk(userId, {
         include: [{
@@ -106,13 +106,13 @@ router.get('/my-stories', asyncHandler(async (req, res) => {
     res.render('my-stories', {user, newStories})
 }))
 
-router.get('/my-stories/new', asyncHandler(async (req, res) => {
+router.get('/my-stories/new', requireAuth, asyncHandler(async (req, res) => {
     const topics = await Topic.findAll()
     console.log(topics)
     res.render('new-story', { topics })
 }));
 
-router.get('/:userId', asyncHandler(async (req, res) => {
+router.get('/:userId', requireAuth, asyncHandler(async (req, res) => {
     const userId = req.params.userId
 
     const user = await User.findByPk(userId, {
@@ -159,6 +159,9 @@ router.get('/:userId', asyncHandler(async (req, res) => {
 
 }));
 
+router.post('/:id/follow', asyncHandler( async (req, res) => {}))
+router.delete('/:id/follow', asyncHandler( async (req, res) => {}))
+router.post('/my-stories/:id/delete', asyncHandler( async (req, res) => {}))
 
 
 module.exports = router;

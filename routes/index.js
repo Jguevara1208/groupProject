@@ -85,38 +85,38 @@ router.get('/log-in', csrfProtection, asyncHandler(async(req, res) => {
 }))
 
 router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    let errors = [];
-    const validatorErrors = validationResult(req);
+  let errors = [];
+  const validatorErrors = validationResult(req);
 
-    console.log(validatorErrors)
-    if (validatorErrors.isEmpty()) {
-      const user = await User.findOne({ where: { email } });
+  console.log(validatorErrors)
+  if (validatorErrors.isEmpty()) {
+    const user = await User.findOne({ where: { email } });
 
-      if (user !== null) {
-        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
-        if (passwordMatch) {
-          loginUser(req, res, user)
-          return req.session.save(() => res.redirect('/users'));
-        }
+    if (user !== null) {
+      const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+      if (passwordMatch) {
+        loginUser(req, res, user)
+        return req.session.save(() => res.redirect('/users'));
       }
-
-      errors.push('Login failed for the provided email address and password');
-    } else {
-      errors = validatorErrors.array().map((error) => {
-        return { error: error.msg, field: error.param } 
-      });
     }
 
-    res.render('log-in', { email, errors, csrfToken: req.csrfToken() });
-    errors = []
-  }));
+    errors.push('Login failed for the provided email address and password');
+  } else {
+    errors = validatorErrors.array().map((error) => {
+      return { error: error.msg, field: error.param } 
+    });
+  }
 
-  router.get('/logout', (req, res) => {
-    logoutUser(req, res);
-    req.session.save(() => res.redirect('/'));
-  });
+  res.render('log-in', { email, errors, csrfToken: req.csrfToken() });
+  errors = []
+}));
+
+router.get('/logout', (req, res) => {
+  logoutUser(req, res);
+  req.session.save(() => res.redirect('/'));
+});
 
 router.get('/demo', csrfProtection, asyncHandler( async (req,res) => {
   const demoUser = await User.findByPk(7)
