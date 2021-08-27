@@ -204,7 +204,7 @@ router.get('/my-stories/:storyId/edit', asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId;
     const story = await Story.findByPk(storyId)
     const topics = await Topic.findAll()
-    // console.log(topics)
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     res.render('edit-story', { topics, story })
   }));
 
