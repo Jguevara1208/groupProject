@@ -32,16 +32,17 @@ html(lang="en")
                         img(class="publish-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
                         h2 Edit Your Story
                         div.publish-wrapper
-                            form(method="POST" action="/users/my-stories/edit")
+                            form(method="POST" action=`/stories/${story.id}/edit`)
                                 div.publish-input-div
                                     label(for="title") Story Title
                                     input(type="text" name="title" value=`${story.title}`)
                                 div.publish-input-div
                                     label(for="body") Story Body
-                                    textarea(class="publish-text-area" name="body" value=`${story.body}`)
+                                    textarea(class="publish-text-area" name="body" value=`${story.body}`)=`${story.body}`
+                                    //- don't know why first one doesn't work but 2nd does
                                 div.publish-input-div
                                     label(for="storyImgUrl") Image Url
-                                    input(type="text" name="storyImgUrl" value=`${story.title}`)
+                                    input(type="text" name="storyImgUrl" value=`${story.storyImgUrl}`)
                                 div.publish-input-div
                                     select(name='topicId')
                                         each top in topics
