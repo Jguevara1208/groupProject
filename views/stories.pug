@@ -1,23 +1,23 @@
 extends layout.pug
 block content
     .story-page-container
-        .story-page-wrapper 
+        .story-page-wrapper
             .story-page-left-container
               .story-page-left
                 .story-page-header-left
                   .story-page-user-info
-                    .story-page-avatar-container 
+                    .story-page-avatar-container
                       a(href=`/users/${user.id}`): .story-page-avatar-img(style=`background-image: url('${user.avatarUrl}')`)
-                    .story-page-author-name 
+                    .story-page-author-name
                       p= `${user.firstName} ${user.lastName}`
                     .story-page-follow-button-container
                       a(class="aNoUnderLine follow" href=``): .follow-button-container Follow
                 .story-page-header-content
                   .story-page-title
-                    h3= story.title 
-                  .story-page-summary 
+                    h3= story.title
+                  .story-page-summary
                     p= story.summary
-                  .story-page-topic-icon-container 
+                  .story-page-topic-icon-container
                     .story-page-topic-container
                       a(class="anchorNoUnderline splash-story-topic" href=`/topics/${topic.id}`)= topic.topic
                     .story-page-icon-container
@@ -31,48 +31,49 @@ block content
                       .story-page-bookmark
                         a(href="/bookmarks"): i(class="far fa-bookmark")
               .story-page-content-left 
+
                 .story-page-story-div
                   .story-page-story-photo(style=`background-image: url('${story.storyImgUrl}')`)
                   .story-page-story-body
                     p= story.body
 
-                          
-                            
+
+
             .story-page-right-container
                 .story-page-right
                     .story-page-header-right
                         .story-page-header-text-right
                             p Comments
-                    .story-page-comment-container 
-                      .comment-number-div 
+                    .story-page-comment-container
+                      .comment-number-div
                         p= `Responses (${commentNumber})`
-                      .comment-form-div 
-                        form(action='stories/:id/comments' method='POST')
+                      .comment-form-div
+                        form(action=`/stories/${story.id}/comments/new` method='POST')
                           .comment-text-area-container
-                            textarea(class="comment-text-area" name="comment" placeholder='What are your thoughts?')
-                          .comment-text-area-button-container 
+                            textarea(class="comment-text-area" name="content" placeholder='What are your thoughts?')
+                          .comment-text-area-button-container
                             button(id="submit-button" type="submit"): i(class="far fa-paper-plane")
                       .story-comments-div
                         each comment in comments
                           if (userId === comment.userId)
-                            .story-comment 
+                            .story-comment
                               .story-comment-info-wrapper
                                 .story-comment-left-div
                                   .commenter-avatar(style=`background-image: url('${comment.avatarUrl}')`)
-                                  .commenter-info 
+                                  .commenter-info
                                     p= `${comment.firstName}`
                                     p= comment.date
-                                  .story-comment-right-div 
+                                  .story-comment-right-div
                                     a(href=''): i(class="far fa-edit")
                                     a(href=''): i(class="far fa-times-circle")
-                              .story-comment-body-wrapper 
+                              .story-comment-body-wrapper
                                 p= comment.content
                           else
-                            .story-comment 
+                            .story-comment
                               .story-comment-info-wrapper
                                 a(href=`/users/${comment.userId}`): .commenter-avatar(style=`background-image: url('${comment.avatarUrl}')`)
-                                .commenter-info 
+                                .commenter-info
                                   a(class="aNoUnderline" href=`/users/${comment.userId}`)= `${comment.firstName}`
                                   p= comment.date
-                              .story-comment-body-wrapper 
+                              .story-comment-body-wrapper
                                 p= comment.content
