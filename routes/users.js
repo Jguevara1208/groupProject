@@ -115,7 +115,6 @@ router.get('/my-stories/new', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 
-router.get('/:userId', requireAuth, asyncHandler(async (req, res) => {
 router.post('/my-stories/new', asyncHandler(async(req, res) => {
 
 
