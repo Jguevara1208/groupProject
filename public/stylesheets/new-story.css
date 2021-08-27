@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 90%;
+    height: 800px;
     align-items: center;
     justify-content: flex-start;
     background-color: white;
@@ -112,7 +112,8 @@ publish > .publish-input-div > p {
 
 .publish-text-area {
     width: 100%;
-    height: 70px;
-    border: none;
+    height: 200px;
+    border-style: dotted;
+    border-radius: 15px;
     border-bottom: 1px solid black;
 }

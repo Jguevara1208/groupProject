@@ -3,6 +3,8 @@ const router = express.Router();
 const { asyncHandler } = require("../utils");
 const { User, Topic, Story} = require('../db/models');
 const { requireAuth } = require("../auth")
+const csrf = require('csurf')
+const csrfProtection = csrf({ cookie: true });
 
 router.get('/delete', asyncHandler(async (req, res) => {
     res.render('/delete')
@@ -108,11 +110,48 @@ router.get('/my-stories', requireAuth, asyncHandler(async (req, res) => {
 
 router.get('/my-stories/new', requireAuth, asyncHandler(async (req, res) => {
     const topics = await Topic.findAll()
-    console.log(topics)
+    // console.log(topics)
     res.render('new-story', { topics })
 }));
 
+
 router.get('/:userId', requireAuth, asyncHandler(async (req, res) => {
+router.post('/my-stories/new', asyncHandler(async(req, res) => {
+
+
+    const { title, body, storyImgUrl, topicId } = req.body;
+    const userId = req.session.auth.userId
+
+    console.log('-------------------------------------------------')
+    console.log(req.body)
+    console.log(userId)
+
+    console.log(body, "--------------------------------")
+    console.log(typeof(body))
+
+    const summary = body.slice(0, 100)
+
+    const bodysize = body.length
+    const readTimeMinutes = Math.floor(bodysize/190)
+
+    //change to build and save later after validations
+    const post = await Story.create({
+        userId,
+        topicId,
+        summary,
+        title,
+        readTimeMinutes,
+        body,
+        storyImgUrl
+    });
+
+
+    res.redirect('/users/my-stories')
+
+}));
+
+
+router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
 
     const user = await User.findByPk(userId, {
