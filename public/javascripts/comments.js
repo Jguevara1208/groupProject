@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', async (e)=> {
 
     const deleteEvent = async (e) => {
         const commentId = e.target.id.split('-')[1]
-
+        
         const res = await fetch(`/stories/${storyId}/comments/${commentId}`, {
             method: 'DELETE'
         })
-
+        
         const container = document.querySelector(`#comment-container-${commentId}`)
 
         container.remove()
