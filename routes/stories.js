@@ -129,10 +129,12 @@ router.get('/:storyId/edit', asyncHandler(async (req, res) => {
   res.render('edit-story', { topics, story })
 }));
 
-router.post('/my-stories/edit', asyncHandler(async(req, res) => {
+router.post('/:storyId/edit', asyncHandler(async(req, res) => {
 
   const { title, body, storyImgUrl, topicId } = req.body;
   const userId = req.session.auth.userId
+  const storyId = req.url.split('/')[1];
+  const story = await Story.findByPk(storyId)
 
   console.log('-------------------------------------------------')
   console.log(req.body)
@@ -146,17 +148,18 @@ router.post('/my-stories/edit', asyncHandler(async(req, res) => {
   const bodysize = body.length
   const readTimeMinutes = Math.floor(bodysize/190)
 
-  //change to build and save later after validations
-  const post = await Story.create({
-      userId,
-      topicId,
-      summary,
-      title,
-      readTimeMinutes,
-      body,
-      storyImgUrl
-  });
 
+  //change to build and save later after validations
+  console.log('----------------------------------------------------------------------------------------------------------------')
+
+  await story.update({
+    topicId,
+    summary,
+    title,
+    readTimeMinutes,
+    body,
+    storyImgUrl
+});
 
   res.redirect('/users/my-stories')
 
