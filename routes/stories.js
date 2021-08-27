@@ -16,6 +16,7 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
       storyId
     }
   })
+
   const comments = commentsArr.map(comment => {
     const date = comment.createdAt
     const month = date.getMonth() + 1
@@ -37,4 +38,17 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
   res.render('stories', { userId, story, user, topic, comments, commentNumber})
 }));
 
+router.post('/:storyId/comments/new', asyncHandler(async (req, res) => {
+  console.log("Hiiiiiiiii!!!!!!!!!!!!!!")
+  const { content } = req.body
+  console.log(content, "<-----------content")
+  const userId = req.session.auth.userId
+  const storyId = req.params.storyId
+  const newComment = await Comment.create({
+    content,
+    userId,
+    storyId
+  })
+  res.redirect("/stories/" + storyId)
+}))
 module.exports = router;
