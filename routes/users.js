@@ -125,13 +125,20 @@ router.post('/my-stories/new', asyncHandler(async(req, res) => {
     console.log(userId)
 
     console.log(body, "--------------------------------")
+    console.log(typeof(body))
 
+    const summary = body.slice(0, 100)
+
+    const bodysize = body.length
+    const readTimeMinutes = Math.floor(bodysize/190)
 
     //change to build and save later after validations
     const post = await Story.create({
         userId,
         topicId,
+        summary,
         title,
+        readTimeMinutes,
         body,
         storyImgUrl
     });
