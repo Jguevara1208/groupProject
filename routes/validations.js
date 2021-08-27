@@ -54,6 +54,9 @@ const signupValidators = [
           }
         });
     }),
+  check('avatarUrl')
+    .isLength({max: 250})
+    .withMessage('The URL for your avatar image must not be over 250 characters'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Password')

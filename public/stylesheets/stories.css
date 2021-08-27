@@ -284,3 +284,19 @@ form {
     width: 100%;
     text-align: left;
 }
+
+.story-page-icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.story-page-likes {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#like-count {
+    margin: 0px 10px;
+}
