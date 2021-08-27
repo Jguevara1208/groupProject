@@ -22,7 +22,8 @@ router.get('/:storyId', requireAuth, asyncHandler(async (req, res) => {
     include: User,
     where: {
       storyId
-    }
+    },
+    order: [['createdAt', 'DESC']]
   })
 
   const comments = commentsArr.map(comment => {
@@ -47,7 +48,13 @@ router.get('/:storyId', requireAuth, asyncHandler(async (req, res) => {
 
 router.get('/:id/comments', asyncHandler(async(req, res) => {}))
 router.post('/:id/comments', asyncHandler(async(req, res) => {}))
-router.delete('/:id/comments', asyncHandler(async(req, res) => {}))
+
+router.delete('/:id/comments/:commentId', asyncHandler(async(req, res) => {
+  const commentId = req.params.commentId
+  const comment = await Comment.findByPk(commentId)
+  await comment.destroy()
+}))
+
 router.patch('/:id/comments', asyncHandler(async(req, res) => {}))
 
 
@@ -99,9 +106,7 @@ router.delete('/:id/likes', asyncHandler(async(req, res) => {
 
 
 router.post('/:storyId/comments/new', asyncHandler(async (req, res) => {
-  console.log("Hiiiiiiiii!!!!!!!!!!!!!!")
   const { content } = req.body
-  console.log(content, "<-----------content")
   const userId = req.session.auth.userId
   const storyId = req.params.storyId
   const newComment = await Comment.create({
@@ -109,7 +114,9 @@ router.post('/:storyId/comments/new', asyncHandler(async (req, res) => {
     userId,
     storyId
   })
-  res.redirect("/stories/" + storyId)
+  const user = await User.findByPk(userId)
+
+  res.json({newComment, user})
 }))
 
 module.exports = router;
