@@ -12,15 +12,27 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
 
     likesIcon.addEventListener('click', async (e) => {
-        const liked = e.target.getAttribute('class')
-        console.log(liked.includes('far'))
-        const target = e.target.id
-        const res = await fetch(`/stories/${storyId}/likes`, {
-            method: "POST"
-        })
+        const liked = e.target.getAttribute('class') //far fa-thumbs-up
 
-        const likesNumAgain = await res.json()
-        likesCount.innerText = likesNumAgain
-        e.target.setAttribute('class','fas fa-thumbs-up')
+        if (liked.includes('far')) {
+
+            const res = await fetch(`/stories/${storyId}/likes`, {
+                method: "POST"
+            })
+    
+            const likesNumAgain = await res.json()
+            likesCount.innerText = likesNumAgain
+            e.target.setAttribute('class','fas fa-thumbs-up')
+
+        } else {
+            const res = await fetch(`/stories/${storyId}/likes`, {
+                method: "DELETE"
+            })
+
+            const likesNumAgain = await res.json()
+            likesCount.innerText = likesNumAgain
+            e.target.setAttribute('class', 'far fa-thumbs-up')
+        }
+
     })
 })

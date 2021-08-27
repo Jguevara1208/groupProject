@@ -23,7 +23,11 @@ block content
                     .story-page-icon-container
                       .story-page-likes
                         p(id='like-count')= ''
-                        a: i(id=`likes-${story.id}` class="far fa-thumbs-up")
+                        if (like === null)
+                          a: i(id=`likes-${story.id}` class="far fa-thumbs-up")
+                        else 
+                          a: i(id=`likes-${story.id}` class="fas fa-thumbs-up")
+                        
                       .story-page-bookmark
                         a(href="/bookmarks"): i(class="far fa-bookmark")
               .story-page-content-left 
