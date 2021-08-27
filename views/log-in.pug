@@ -1,36 +1,50 @@
 html(lang="en")
-  head
-  block head
-      meta(charset="UTF-8")
-      meta(http-equiv="X-UA-Compatible", content="IE=edge")
-      meta(name="viewport", content="width=device-width, initial-scale=1.0")
-      style: include ../public/stylesheets/form-sheet.css
-      script: include ../public/javascripts/index.js
-      title Groovium
-  body
-    div.form-container-outer
-      div.form-page-side-divs
-          div#logoDiv
-              a(href="/"): img(id="form-logo" src='/logos/logo.png')
-      div.form-page-center-div
-          div.form-container-inner-log-in
-              img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
-              h2 Welcome Back
-              div.form-wrapper 
-                form(action="/log-in" method="POST")
-                    input(type="hidden" name="_csrf" value=csrfToken)
-                    div.form-input-div
-                        label(for="email") Email Address
-                        input(type="email" name="email" value=email)
-                    div.form-input-div
-                        label(for="password") Password
-                        input(type="password" name="password")
-                    div.form-input-div
-                        label(for="confirmPassword") Confirm Password
-                        input(type="password" name="confirmPassword")
-                    div(class="form-input-button-div")
-                        button(class="form-submit-button" type="submit") Log In
-                    div.form-input-div
-                        p No account?
-                            span: a(class="anchorNoUnderline form-change-anchor" href='/sign-up') Create one
-      div.form-page-side-divs
+    head
+    block head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style: include ../public/stylesheets/form-sheet.css
+        script: include ../public/javascripts/index.js
+        title Groovium
+    body
+        div.form-container-outer
+            div.form-page-side-divs
+                div#logoDiv
+                    a(href="/"): img(id="form-logo" src='/logos/logo.png')
+            div.form-page-center-div
+                div.form-container-inner-log-in
+                    img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+                    h2 Welcome Back
+                    div.form-wrapper
+                            form(action="/log-in" method="POST")
+                                input(type="hidden" name="_csrf" value=csrfToken)
+                                div.form-input-div
+                                    if errors
+                                        each error in errors 
+                                            if error.field === 'email'
+                                                p(class="error")= `• ${error.error}`
+                                    label(for="email") Email Address
+                                    input(type="email" name="email" value=email)
+                                div.form-input-div
+                                    if errors
+                                        each error in errors 
+                                            if error.field === 'password'
+                                                p(class="error")= `• ${error.error}`
+                                    label(for="password") Password
+                                    input(type="password" name="password")
+                                div.form-input-div
+                                    if errors
+                                        each error in errors 
+                                            if error.field === 'confirmPassword'
+                                                p(class="error")= `• ${error.error}`
+                                    label(for="confirmPassword") Confirm Password
+                                    input(type="password" name="confirmPassword")
+                                div(class="form-input-button-div")
+                                    button(class="form-submit-button" type="submit") Log In
+                                div.form-input-div
+                                    p(id="already-have" ) No account?
+                                        span: a(class="anchorNoUnderline form-change-anchor" href='/sign-up') Create one
+                                .form-input-div 
+                                    a(href="/demo" class="demo-user") Demo User?
+            div.form-page-side-divs
