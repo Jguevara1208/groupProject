@@ -1,0 +1,58 @@
+html(lang="en")
+    head
+    block head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous")
+        link(rel="stylesheet" href='https://fonts.googleapis.com/icon?family=Material+Icons')
+        link(href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet")
+        style: include ../public/stylesheets/index.css
+        style: include ../public/stylesheets/splash-page.css
+        style: include ../public/stylesheets/new-story.css
+        script: include ../public/javascripts/index.js
+        title Groovium
+    body
+        nav
+            div#logoDiv
+                a(href="/users"): img(src='/logos/logo.png')
+            if authenticated
+                div
+                    a(href="/users/my-stories"): img(id="navBM" src="/logos/bookmark_add_black_24dp 7.png")
+                    a(class="anchorNoUnderline log" href="/logout") Log out
+            else
+                div
+                    a(class="anchorNoUnderline log" href="/log-in") Log in
+                    a(id="get-started-button" class="anchorNoUnderline" href="/sign-up") Get Started
+        block content
+            div.publish-container-outer
+                div.publish-page-side-divs2
+                div.publish-page-center-div
+                    div.publish-container-inner-sign-up
+                        img(class="publish-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+                        h2 Edit Your Story
+                        div.publish-wrapper
+                            form(method="POST" action=`/users/my-stories/${story.id}/edit`)
+                                div.publish-input-div
+                                    label(for="title") Story Title
+                                    input(type="text" name="title" value=`${story.title}`)
+                                div.publish-input-div
+                                    label(for="body") Story Body
+                                    textarea(class="publish-text-area" name="body" value=`${story.body}`)=`${story.body}`
+                                    //- don't know why first one doesn't work but 2nd does
+                                div.publish-input-div
+                                    label(for="storyImgUrl") Image Url
+                                    input(type="text" name="storyImgUrl" value=`${story.storyImgUrl}`)
+                                div.publish-input-div
+                                    select(name='topicId')
+                                        each top in topics
+                                            if (top.id === story.topicId)
+                                                option(name="topicId" value=top.id selected)=top.topic
+                                            else
+                                                option(value=`${top.id}`)=top.topic
+                                div(class="publish-input-button-div")
+                                    button(class="publish-submit-button" type="submit") Edit
+                                div(class="publish-input-button-div")
+                                    a(id="cancel-publish-button" href="/users/my-stories" class="anchorNoUnderline") Cancel
+
+            div.publish-page-side-divs2

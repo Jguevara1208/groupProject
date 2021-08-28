@@ -1,17 +1,17 @@
 extends layout.pug
 block content
     .user-profile-container
-        .user-profile-wrapper 
+        .user-profile-wrapper
             .user-profile-left-container
                 .user-profile-left
                     .user-profile-header-left
-                        .user-profile-avatar-container 
+                        .user-profile-avatar-container
                             .user-profile-avatar-img(style=`background-image: url('${user.avatarUrl}')`)
                         .user-profile-header-text-left
                             p Your Stories
                         .user-profile-empty-right
-                .user-profile-content-left 
-                        .my-stories-stories-div 
+                .user-profile-content-left
+                        .my-stories-stories-div
                             each story in newStories
                                 .story-container(id=`myStory-${story.id}`)
                                     .story-container-left
@@ -20,14 +20,15 @@ block content
                                             a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
                                         .story-title
                                             a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
-                                        .story-summary 
+                                        .story-summary
                                             p= story.summary
                                         .story-info
                                             .left-story-info
                                                 p= story.date
-                                                p=  '•'  
+                                                p=  '•'
                                                 p= `${story.readTimeMinutes} min read`
                                                 a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
+
                                             .right-story-bookmark-info 
                                                 a(href=`/my-stories/${story.id}/edit`): i(class="far fa-edit")
                                                 i(class="far fa-trash-alt" id=`modal-${story.id}`)
@@ -37,8 +38,6 @@ block content
                                                     .modal-button-holder
                                                         .delete-button(id=`delete-${story.id}`) Delete?
                                                         p(class="close" id=`close-${story.id}` ) Cancel
-
-
                                     .story-container-right 
                                         a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
             .user-profile-right-container
@@ -46,15 +45,15 @@ block content
                     .user-profile-header-right
                         .user-profile-header-text-right
                             p Bookmarks
-                    .my-stories-bookmark-div 
+                    .my-stories-bookmark-div
                         each bookmark in user.bookmark
                             .bookmark-container-wrapper(id=`bookmark-container-${bookmark.id}`)
                                 .bookmark-container 
                                     .bookmark-container-left
                                         .bookmark-title
                                             a(class="aNoUnderLine" href=`/stories/${bookmark.id}`): h3= bookmark.title
-                                        .bookmark-summary 
+                                        .bookmark-summary
                                             p= bookmark.summary
-                                    .bookmark-container-right 
+                                    .bookmark-container-right
                                         a(href=`/stories/${bookmark.id}`): div(class="bookmark-story-img" style=`background-image: url('${bookmark.storyImgUrl}')`)
                                 i(id=`bookmark-${bookmark.id}` class="fas fa-ban")

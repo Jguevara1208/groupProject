@@ -255,5 +255,51 @@ router.delete('/my-stories/:storyId/delete', asyncHandler( async (req, res) => {
     res.json('success')
 }))
 
+//Edit
+router.get('/my-stories/:storyId/edit', asyncHandler(async (req, res) => {
+    const storyId = req.url.split('/')[2];
+    const userId = req.session.auth.userId;
+    const story = await Story.findByPk(storyId)
+    const topics = await Topic.findAll()
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    res.render('edit-story', { topics, story })
+  }));
+
+  router.post('/my-stories/:storyId/edit', asyncHandler(async(req, res) => {
+
+    const { title, body, storyImgUrl, topicId } = req.body;
+    const userId = req.session.auth.userId
+    const storyId = req.url.split('/')[2];
+    const story = await Story.findByPk(storyId)
+
+    console.log('-------------------------------------------------')
+    console.log(req.body)
+    console.log(userId)
+
+    console.log(body, "--------------------------------")
+    console.log(typeof(body))
+
+    const summary = body.slice(0, 100)
+
+    const bodysize = body.length
+    const readTimeMinutes = Math.floor(bodysize/190)
+
+
+    //change to build and save later after validations
+    console.log('----------------------------------------------------------------------------------------------------------------')
+
+    await story.update({
+      topicId,
+      summary,
+      title,
+      readTimeMinutes,
+      body,
+      storyImgUrl
+  });
+
+    res.redirect('/users/my-stories')
+
+  }));
+
 
 module.exports = router;
