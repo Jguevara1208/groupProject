@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require("../utils");
-const { User, Topic, Story} = require('../db/models');
+const { User, Topic, Story, Follow, Bookmark} = require('../db/models');
 const { requireAuth } = require("../auth")
-const csrf = require('csurf')
-const csrfProtection = csrf({ cookie: true });
+const { Op } = require("sequelize");
 
 
 
@@ -22,7 +21,6 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
         }]
     });
 
-
     const followingsIds = user.followings.map(user => user.id)
     const feedStories = await Story.findAll({
         limit: 5,
@@ -32,12 +30,21 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
         }
     })
 
+    const bookmarks = await Bookmark.findAll({
+        where: { userId }
+    })
+    
     const newStories = feedStories.map(story => {
         const date = story.createdAt
         const month = date.getMonth() + 1
         const day = date.getDate()
         const newDate = `${month}-${day}`
-
+        
+        let bookmarked = false
+        bookmarks.forEach(bookmark => {
+            if (bookmark.storyId === story.id) bookmarked = true
+        })
+        
         return {
           id: story.id,
           title: story.title,
@@ -50,7 +57,8 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
           readTimeMinutes: story.readTimeMinutes,
           topicId: story.topicId,
           topic: story.Topic.topic,
-          storyImgUrl: story.storyImgUrl
+          storyImgUrl: story.storyImgUrl,
+          bookmarked
         }
       })
 
@@ -149,6 +157,7 @@ router.post('/my-stories/new', asyncHandler(async(req, res) => {
 
 router.get('/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
+    const currentUser = req.session.auth.userId
 
     const user = await User.findByPk(userId, {
         limit: 5,
@@ -164,13 +173,21 @@ router.get('/:userId', asyncHandler(async (req, res) => {
         }
     ]
     });
+    const bookmarks = await Bookmark.findAll({
+        where: { userId: currentUser }
+    })
 
     const newStories = user.Stories.map(story => {
+
         const date = story.createdAt
         const month = date.getMonth() + 1
         const day = date.getDate()
         const newDate = `${month}-${day}`
-
+        
+        let bookmarked = false
+        bookmarks.forEach(bookmark => {
+            if (bookmark.storyId === story.id) bookmarked = true
+        })
         return {
             id: story.id,
             title: story.title,
@@ -183,20 +200,60 @@ router.get('/:userId', asyncHandler(async (req, res) => {
             readTimeMinutes: story.readTimeMinutes,
             topicId: story.topicId,
             topic: story.Topic.topic,
-            storyImgUrl: story.storyImgUrl
+            storyImgUrl: story.storyImgUrl,
+            bookmarked
         }
     })
+
+    console.log(newStories)
+
+    const follow = await Follow.findOne({
+        where: {
+            [Op.and]: [{ userId: currentUser }, { followingId: userId }]
+        }
+    })
+
+
     if (req.params.userId == req.session.auth.userId) {
         res.redirect('/users/my-stories')
     } else {
-        res.render('other-profiles-page', { user, newStories })
+        res.render('other-profiles-page', { user, newStories, follow })
     }
 
 }));
 
-router.post('/:id/follow', asyncHandler( async (req, res) => {}))
-router.delete('/:id/follow', asyncHandler( async (req, res) => {}))
-router.post('/my-stories/:id/delete', asyncHandler( async (req, res) => {}))
+router.post('/:id/follow', asyncHandler( async (req, res) => {
+    const followingId = req.params.id
+    const userId = req.session.auth.userId
+
+    const follow = await Follow.create({
+        userId,
+        followingId
+    })
+    res.json('success')
+}))
+
+router.delete('/:id/follow', asyncHandler( async (req, res) => {
+    const followingId = req.params.id
+    const userId = req.session.auth.userId
+
+    const follow = await Follow.findOne({
+        where: {
+            [Op.and]: [{ userId: userId }, { followingId: followingId }]
+        }
+    })
+
+    follow.destroy()
+
+    res.json('success')
+}))
+
+router.delete('/my-stories/:storyId/delete', asyncHandler( async (req, res) => {
+    const storyId = req.params.storyId
+    const story = await Story.findByPk(storyId)
+    story.destroy()
+    res.json('success')
+}))
 
 //Edit
 router.get('/my-stories/:storyId/edit', asyncHandler(async (req, res) => {

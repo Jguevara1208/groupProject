@@ -158,11 +158,6 @@
     margin-right: 10px;
 }
 
-.fa-trash-alt {
-    color: D76735;
-    font-size: 22px;
-    margin-left: 10px
-}
 
 .bookmark-container-wrapper {
     display: flex;
@@ -174,4 +169,47 @@
     color: D76735;
     font-size: 18px;
     transform: translateX(30px);
+    cursor: pointer;
 } 
+
+.box {
+    width: 200px;
+    overflow: hidden;
+    color: black;
+    padding: 30px;
+    background-color: FCFCFC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+    position: absolute;
+    z-index: 9999;
+    text-align: center;
+    display: none;
+    transform: translate(-43px, -100px);
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.delete-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 30px;
+    background-color: D76735; 
+    border-radius: 15px;
+    color: white;
+}
+
+.modal-button-holder {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    transform: translateX(-12px);
+}
