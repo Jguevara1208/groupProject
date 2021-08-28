@@ -40,15 +40,18 @@
   align-items: center;
   justify-content: center;
 }
-#add-topic {
+
+.topic-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
-  background-color: rgba(215, 103, 53, .7);
-  width: 113px;
-  height: 30px;
+  width: 90px;
+  height: 20px;
   padding: 10px 27px;
   border-radius: 20px;
   border: none;
-  text-align: center;
+  cursor: pointer;
 }
 
 

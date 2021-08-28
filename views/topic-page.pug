@@ -6,7 +6,10 @@ block content
         .topic-name-and-description-container
           .other-profiles-header-left
             .other-profiles-follow-me-button
-              button(id="add-topic" form="?" action="?") Add Topic
+              if follow
+                .follow-button-container(id=`topic-${topic.id}` class="topic-button topic-follow" style="background-color: rgb(225, 143, 107)") Remove
+              else 
+                .follow-button-container(id=`topic-${topic.id}` class="topic-button topic-follow" style="background-color: rgb(251, 210, 102)") Add
             .other-profiles-header-text-left
               p= topic.topic
           .topic-description-container
@@ -45,6 +48,10 @@ block content
                       p= `${story.readTimeMinutes} min read`
                       a(class="splash-story-topic" href=`/stories/${story.topicId}`)= story.topic
                     .topic-story-icons-container
-                      a(href=`/users/my-stories/${story.id}/delete`): i(id="topic-story-bookmark" class="far fa-bookmark")
+                      if story.bookmarked 
+                        i(id=`story-${story.id}` class="fas fa-bookmark")
+                      else 
+                        i(id=`story-${story.id}` class="far fa-bookmark")
                 .story-container-right
                     a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
+  script: include ../public/javascripts/topics.js

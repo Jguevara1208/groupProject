@@ -1,5 +1,5 @@
 # API endpoints
-- '/bookmarks' - POST
+- '/bookmarks/:storyId' - POST
 - '/bookmarks' - DELETE
 
 - 'users/:id/follow' - POST

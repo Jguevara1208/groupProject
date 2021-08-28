@@ -8,8 +8,11 @@ block content
                     .other-profiles-header-left
                         .other-profiles-avatar-image 
                             .other-profiles-avatar-img(style=`background-image: url('${user.avatarUrl}')`)
-                        .other-profiles-follow-me-button   
-                            a(class="anchorNoUnderline follow-me-button" href=`/my-stories/new'`) Follow Me 
+                        .story-page-follow-button-container
+                            if follow 
+                                .follow-button-container(class=`user-${user.id}` style="background-color: rgb(225, 143, 107);" id="profile-follow-button") Unfollow 
+                            else 
+                                .follow-button-container(class=`user-${user.id}` style="background-color: rgb(251, 210, 102)" id="profile-follow-button") Follow 
                         .other-profiles-header-text-left
                             p= `${user.firstName} ${user.lastName}`
                     .other-profiles-content-left
@@ -50,6 +53,10 @@ block content
                                                 p= `${story.readTimeMinutes} min read`
                                                 a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
                                             .right-story-bookmark-info 
-                                                a(href="/bookmarks"): i(class="far fa-bookmark")
+                                                if story.bookmarked
+                                                    i(id=`story-${story.id}` class="fas fa-bookmark")
+                                                else
+                                                    i(id=`story-${story.id}` class="far fa-bookmark")
                                     .story-container-right 
                                         a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
+        script: include ../public/javascripts/follows.js

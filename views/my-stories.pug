@@ -13,7 +13,7 @@ block content
                 .user-profile-content-left 
                         .my-stories-stories-div 
                             each story in newStories
-                                .story-container 
+                                .story-container(id=`myStory-${story.id}`)
                                     .story-container-left
                                         .avatar-and-name
                                             div(class="splash-avatar-img" style=`background-image: url('${user.avatarUrl}')`)
@@ -30,7 +30,15 @@ block content
                                                 a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
                                             .right-story-bookmark-info 
                                                 a(href=`/my-stories/${story.id}/edit`): i(class="far fa-edit")
-                                                a(href=`users/my-stories/${story.id}/delete`): i(class="far fa-trash-alt")
+                                                i(class="far fa-trash-alt" id=`modal-${story.id}`)
+                                                .box(id=`box-${story.id}`)
+                                                    img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+                                                    p(class='delete?')= `Are you sure you want to delete this story?` 
+                                                    .modal-button-holder
+                                                        .delete-button(id=`delete-${story.id}`) Delete?
+                                                        p(class="close" id=`close-${story.id}` ) Cancel
+
+
                                     .story-container-right 
                                         a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
             .user-profile-right-container
@@ -40,7 +48,7 @@ block content
                             p Bookmarks
                     .my-stories-bookmark-div 
                         each bookmark in user.bookmark
-                            .bookmark-container-wrapper
+                            .bookmark-container-wrapper(id=`bookmark-container-${bookmark.id}`)
                                 .bookmark-container 
                                     .bookmark-container-left
                                         .bookmark-title
@@ -49,4 +57,4 @@ block content
                                             p= bookmark.summary
                                     .bookmark-container-right 
                                         a(href=`/stories/${bookmark.id}`): div(class="bookmark-story-img" style=`background-image: url('${bookmark.storyImgUrl}')`)
-                                a(href="" value=bookmark.id): i(class="fas fa-ban")
+                                i(id=`bookmark-${bookmark.id}` class="fas fa-ban")

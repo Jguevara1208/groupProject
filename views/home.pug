@@ -39,9 +39,12 @@ block content
                                             p= story.date
                                             p=  '•'
                                             p= `${story.readTimeMinutes} min read`
-                                            a(class="splash-story-topic" href=`/topic/${story.topicId}`)= story.topic
+                                            a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
                                         .right-story-bookmark-info
-                                            a(href=`/bookmarks`): i(class="far fa-bookmark")
+                                            if story.bookmarked
+                                                i(id=`story-${story.id}` class="fas fa-bookmark")
+                                            else
+                                                i(id=`story-${story.id}` class="far fa-bookmark")
                                 .story-container-right
                                     a(href=`/stories/${story.id}`): div(class="splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
             .user-home-right-container

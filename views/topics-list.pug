@@ -9,8 +9,13 @@ block content
           a(id="topic-image" href=`/topics/${topic.id}`)
             .topic-image(style=`background-image: url(${topic.imageUrl})`)
           .topic-title
-            p=topic.topic
+            a( href=`/topics/${topic.id}` )(class="aNoUnderline")=topic.topic
             .add-topic-button
-              i(class="far fa-plus-circle")
+              if topic.follows
+                i(id=`topic-${topic.id}` class="far fa-plus-circle topic-follow" style="color: rgb(225, 143, 107)")
+              else 
+                i(id=`topic-${topic.id}` class="far fa-plus-circle topic-follow" style="color: rgb(251, 210, 102)")
+
           .topic-description
             p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  script: include ../public/javascripts/topics.js

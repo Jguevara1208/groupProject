@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', async (e)=> {
+
     const deleteButtons = document.querySelectorAll('.fa-times-circle')
     const split = document.URL.split('/')
     const storyId = split[split.length - 1]
 
     const deleteEvent = async (e) => {
         const commentId = e.target.id.split('-')[1]
+
+        const container = document.querySelector(`#comment-container-${commentId}`)
+        container.remove()
         
-        const res = await fetch(`/stories/${storyId}/comments/${commentId}`, {
+        const res = await fetch(`/users/my-stories/${storyId}/delete`, {
             method: 'DELETE'
         })
         
-        const container = document.querySelector(`#comment-container-${commentId}`)
-
-        container.remove()
     }
 
     for(let i = 0; i < deleteButtons.length; i++) {

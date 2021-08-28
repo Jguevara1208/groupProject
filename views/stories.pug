@@ -11,7 +11,10 @@ block content
                     .story-page-author-name
                       p= `${user.firstName} ${user.lastName}`
                     .story-page-follow-button-container
-                      a(class="aNoUnderLine follow" href=``): .follow-button-container Follow
+                      if follow
+                        .follow-button-container(class=`user-${user.id}` style="background-color: rgb(225, 143, 107);" id="story-follow-button") Unfollow 
+                      else
+                        .follow-button-container(class=`user-${user.id}` style="background-color: rgb(251, 210, 102)" id="story-follow-button") Follow 
                 .story-page-header-content
                   .story-page-title
                     h3= story.title
@@ -24,9 +27,9 @@ block content
                       .story-page-likes
                         p(id='like-count')= ''
                         if (like === null)
-                          a: i(id=`likes-${story.id}` class="far fa-thumbs-up")
+                          i(id=`likes-${story.id}` class="far fa-thumbs-up")
                         else 
-                          a: i(id=`likes-${story.id}` class="fas fa-thumbs-up")
+                          i(id=`likes-${story.id}` class="fas fa-thumbs-up")
                       .story-page-bookmark
                         a(href="/bookmarks"): i(class="far fa-bookmark")
               .story-page-content-left 
@@ -73,3 +76,6 @@ block content
                                   p= comment.date
                               .story-comment-body-wrapper
                                 p= comment.content
+    script: include ../public/javascripts/comments.js
+    script: include ../public/javascripts/likes.js
+    script: include ../public/javascripts/follows.js

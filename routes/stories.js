@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { asyncHandler} = require("../utils")
-const { Story, User, Topic, Comment, Like} = require("../db/models");
+const { Story, User, Topic, Comment, Like, Follow } = require("../db/models");
 const { requireAuth } = require("../auth")
 const { Op } = require("sequelize");
 
@@ -12,12 +12,8 @@ router.get('/:storyId', requireAuth, asyncHandler(async (req, res) => {
   const story = await Story.findByPk(storyId)
   const user = await User.findByPk(story.userId)
   const topic = await Topic.findByPk(story.topicId)
-  const like = await Like.findOne({
-    where:{
-      [Op.and]: [{ userId: userId }, { storyId: storyId }]
-    }
-  })
-
+  const like = await Like.findOne({ where:{ [Op.and]: [{ userId: userId }, { storyId: storyId }] }} )
+  const follow = await Follow.findOne( { where: { [Op.and]: [{ userId: userId }, { followingId: story.userId}] }} )
   const commentsArr = await Comment.findAll({
     include: User,
     where: {
@@ -43,7 +39,8 @@ router.get('/:storyId', requireAuth, asyncHandler(async (req, res) => {
     }
   })
   const commentNumber = comments.length
-  res.render('stories', { like, userId, story, user, topic, comments, commentNumber})
+  res.render('stories', { like, userId, story, user, topic, comments, commentNumber, follow})
+
 }));
 
 router.get('/:id/comments', asyncHandler(async(req, res) => {}))
