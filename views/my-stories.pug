@@ -28,9 +28,8 @@ block content
                                                 p=  '•'
                                                 p= `${story.readTimeMinutes} min read`
                                                 a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
-
                                             .right-story-bookmark-info 
-                                                a(href=`/my-stories/${story.id}/edit`): i(class="far fa-edit")
+                                                a(href=`/users/my-stories/${story.id}/edit`): i(class="far fa-edit")
                                                 i(class="far fa-trash-alt" id=`modal-${story.id}`)
                                                 .box(id=`box-${story.id}`)
                                                     img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
