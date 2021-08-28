@@ -40,7 +40,7 @@ block content
                                 .story-container 
                                     .story-container-left
                                         .avatar-and-name
-                                            div(class="splash-avatar-img" style=`background-image: url('https://i.pinimg.com/originals/ff/75/88/ff75888cb867d4c7ff3a8c1e4fee6795.jpg')`)
+                                            div(class="splash-avatar-img" style=`background-image: url('${story.avatarUrl}')`)
                                             a(class="aNoUnderline" href=`/users/${story.userId}`)= `${story.firstName} ${story.lastName}`
                                         .story-title
                                             a(class="aNoUnderLine" href=`/stories/${story.id}`): h3= story.title
