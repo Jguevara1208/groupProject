@@ -181,6 +181,7 @@
     width: 60%;
     padding: 10px 0px 20px 0px;
     border-bottom: 1px solid rgba(0,0,0,.25);
+    margin-top: 17px;
 }
 
 .write {
@@ -188,7 +189,7 @@
     font-size: 13px;
     text-align: center;
 }
-/* 
+/*
 .my-stories-div {
     display: flex;
     width: 100%;
