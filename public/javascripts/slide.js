@@ -11,7 +11,7 @@ buttonNext.addEventListener('click', handleNext);
 
 buttonPrev.addEventListener('click', handlePrev);
 
-setInterval(handleNext, 3000)
+// setInterval(handleNext, 3000)
 
 let currentSlide = 0;
 const numSlides = slidesContainer.children.length;

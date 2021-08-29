@@ -20,7 +20,7 @@ router.get('/', asyncHandler( async (req, res) => {
     const month = date.getMonth() + 1
     const day = date.getDate()
     const newDate = `${month}-${day}`
-    let longsum = story.body.slice(0, 814).concat('......')
+    let longsum = story.body.slice(0, 315).concat('.')
 
 
     return {

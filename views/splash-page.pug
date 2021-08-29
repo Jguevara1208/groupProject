@@ -16,12 +16,10 @@ block content
                 h2 See what's trending on Groovium
                 img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
         .slide-container
+            .carousel-button-left
+                div(class="carousel-button")
+                    span(class="fas fa-chevron-circle-left")
             .carousel
-                .carousel-buttons
-                    div(class="carousel-button")
-                        span(class="fas fa-chevron-circle-left")
-                    div(class="carousel-button_next")
-                        span(class="fas fa-chevron-circle-right")
                 .slides
                     each story in newStories
                         .slide
@@ -37,17 +35,19 @@ block content
                                         .slide-box-right
                                             .slide-story-box
                                                 div(class="slide-splash-story-img" style=`background-image: url('${story.storyImgUrl}')`)
-                                                a(class="slide-splash-story-topic")= story.topic
                                 .slide-story
                                     .slide-story-title
-                                        a(class="slide-story-title-format"): h3= story.title
-                                    div.slide-story-summary
+                                        a(class="slide-story-title-format"): p= story.title
+                                    .slide-story-summary
                                         p= story.summary
                                 .slide-story-bottom
-                                    div.slide-story-info
-                                        p(class="slidebotdiv")= `${story.readTimeMinutes} min read`
-                                        img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+                                    .slide-story-info
                                         p(class="slidebotdiv")= story.date
+                                        a(class="slide-splash-story-topic")= story.topic
+                                        p(class="slidebotdiv")= `${story.readTimeMinutes} min read`
+            .carousel-button-right 
+                div(class="carousel-button_next")
+                    span(class="fas fa-chevron-circle-right")
 
 
         script(src='../javascripts/slide.js')
