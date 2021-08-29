@@ -1,20 +1,13 @@
-extends layout.pug
-block content
-    div.main-content-wrapper
-        div.under-nav
-            div.under-nav-text
-                p#intro-p <span id="groovium">Groovium</span> is a place to <span id="yellow">write</span>, <span id="red">read</span>, and <span id="green">connect</span>
-                p#sub-intro-p It’s easy and free to post your thinking on food, sports, tech, pets and connect with millions of readers.
-                if authenticated
-                    a(id="get-groovy-button" href='/users/my-stories') Get Groovy
-                else
-                    a(id="get-groovy-button" href='/sign-up') Get Groovy
-            div.under-nav-img
-                img(src="./logos/splash-image.png", alt="logo of woman with hippie glasses")
-        div.content-div
-            div.content-intro
-                h2 See what's trending on Groovium
-                img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+html(lang="en")
+    block head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous")
+        style: include ../public/stylesheets/slide.css
+        style: include ../public/stylesheets/splash-page.css
+        link(href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet")
+    body
         .slide-container
             .carousel
                 .carousel-buttons
@@ -45,15 +38,8 @@ block content
                                 .slide-story-bottom
                                     div.slide-story-info
                                         p(class="slidebotdiv")= `${story.readTimeMinutes} min read`
-                                        img(class="form-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
+                                        img(class="slidebotdiv" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
                                         p(class="slidebotdiv")= story.date
 
 
-        script(src='../javascripts/slide.js')
-        div.splash-topics-div
-            h3 Discover more of what matters to you
-            div.splash-topics
-                a(class="aNoUnderline splash-story-topic") Pets
-                a(class="aNoUnderline splash-story-topic") Sports
-                a(class="aNoUnderline splash-story-topic") Food
-                a(class="aNoUnderline splash-story-topic") Tech
+    script(src='../javascripts/slide.js')
