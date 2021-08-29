@@ -90,13 +90,22 @@
 .slider-opacity {
     z-index: -1;
     position: absolute;
-    height: 100%;;
-    width:40%;
+    height: 65%;;
+    width:50%;
     background: no-repeat center url('../logos/splash-image.png');
-    background-size: contain;
     opacity: 20%;
-    transform: translate(100px, -100px);
+    display: none;
+    background-size: 70%;
+
 }
+
+@media screen and (min-width: 1000px) {
+    .slider-opacity {
+        display: block;
+ }
+}
+
+
 
 .slide-user-name {
 
