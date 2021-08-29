@@ -99,10 +99,11 @@
     opacity: 15%;
     display: none;
     background-size: 70%;
+    transform: translateX(20px);
 
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
     .slider-opacity {
         display: block;
  }
