@@ -126,36 +126,36 @@ router.get('/demo', csrfProtection, asyncHandler( async (req,res) => {
   return req.session.save(() => res.redirect('/users'));
 }))
 
-// router.get('/test', asyncHandler( async (req, res) => {
-//   const stories = await Story.findAll({
-//     include: [User, Topic],
-//     limit: 20
-//   })
-//   const newStories = stories.map(story => {
-//     const date = story.createdAt
-//     const month = date.getMonth() + 1
-//     const day = date.getDate()
-//     const newDate = `${month}-${day}`
-//     let longsum = story.body.slice(0, 814).concat('......')
+router.get('/test', asyncHandler( async (req, res) => {
+  const stories = await Story.findAll({
+    include: [User, Topic],
+    limit: 20
+  })
+  const newStories = stories.map(story => {
+    const date = story.createdAt
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const newDate = `${month}-${day}`
+    let longsum = story.body.slice(0, 814).concat('......')
 
-//     return {
-//       id: story.id,
-//       title: story.title,
-//       userId: story.User.id,
-//       avatarUrl: story.User.avatarUrl,
-//       firstName: story.User.firstName,
-//       lastName: story.User.lastName,
-//       summary: longsum,
-//       body: story.body,
-//       date: newDate,
-//       readTimeMinutes: story.readTimeMinutes,
-//       topicId: story.topicId,
-//       topic: story.Topic.topic,
-//       storyImgUrl: story.storyImgUrl
-//     }
-//   })
+    return {
+      id: story.id,
+      title: story.title,
+      userId: story.User.id,
+      avatarUrl: story.User.avatarUrl,
+      firstName: story.User.firstName,
+      lastName: story.User.lastName,
+      summary: longsum,
+      body: story.body,
+      date: newDate,
+      readTimeMinutes: story.readTimeMinutes,
+      topicId: story.topicId,
+      topic: story.Topic.topic,
+      storyImgUrl: story.storyImgUrl
+    }
+  })
 
-//   res.render('test-view', { newStories });
-// }));
+  res.render('test-view', { newStories });
+}));
 
 module.exports = router;

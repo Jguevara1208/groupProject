@@ -10,7 +10,7 @@
     height: 100%;
     position: relative;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -82,7 +82,20 @@
     border-radius: 15px;
     background-color: rgba(143, 176, 169, .17);
     justify-content: space-between;
+    /* background: no-repeat center url('../logos/splash-image.png'); */
 
+}
+
+
+.slider-opacity {
+    z-index: -1;
+    position: absolute;
+    height: 100%;;
+    width:40%;
+    background: no-repeat center url('../logos/splash-image.png');
+    background-size: contain;
+    opacity: 20%;
+    transform: translate(100px, -100px);
 }
 
 .slide-user-name {
