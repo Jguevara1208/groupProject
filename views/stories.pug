@@ -11,7 +11,8 @@ block content
                     .story-page-author-name
                       p= `${user.firstName} ${user.lastName}`
                     .story-page-follow-button-container
-                      if follow
+                      if story.userId === userId
+                      else if follow
                         .follow-button-container(class=`user-${user.id}` style="background-color: rgb(225, 143, 107);" id="story-follow-button") Unfollow 
                       else
                         .follow-button-container(class=`user-${user.id}` style="background-color: rgb(251, 210, 102)" id="story-follow-button") Follow 
