@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { asyncHandler} = require("../utils")
-const { Story, User, Topic, Comment, Like, Follow } = require("../db/models");
+const { Story, User, Topic, Comment, Like, Follow, Bookmark} = require("../db/models");
 const { requireAuth } = require("../auth")
 const { Op } = require("sequelize");
 
@@ -22,12 +22,19 @@ router.get('/:storyId', requireAuth, asyncHandler(async (req, res) => {
     order: [['createdAt', 'DESC']]
   })
 
+  const bookmarked = await Bookmark.findOne({
+    where: { [Op.and]: [{userId}, {storyId}] }
+  })
+  
+  console.log(bookmarked)
+
   const comments = commentsArr.map(comment => {
     const date = comment.createdAt
     const month = date.getMonth() + 1
     const day = date.getDate()
     const newDate = `${month}-${day}`
 
+    
     return {
       id: comment.id,
       content: comment.content,
@@ -38,8 +45,10 @@ router.get('/:storyId', requireAuth, asyncHandler(async (req, res) => {
       date: newDate,
     }
   })
+  
   const commentNumber = comments.length
-  res.render('stories', { like, userId, story, user, topic, comments, commentNumber, follow})
+
+  res.render('stories', { like, userId, story, user, topic, comments, commentNumber, follow, bookmarked})
 
 }));
 

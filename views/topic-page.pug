@@ -46,6 +46,7 @@ block content
                       p= story.date
                       p=  '•'
                       p= `${story.readTimeMinutes} min read`
+                      p=  '•'
                       a(class="splash-story-topic" href=`/stories/${story.topicId}`)= story.topic
                     .topic-story-icons-container
                       if story.bookmarked 

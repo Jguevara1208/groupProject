@@ -8,7 +8,7 @@ html(lang="en")
         link(rel="stylesheet" href='https://fonts.googleapis.com/icon?family=Material+Icons')
         link(href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet")
         style: include ../public/stylesheets/index.css
-        style: include ../public/stylesheets/splash-page.css
+        style: include ../public/stylesheets/form-sheet.css
         style: include ../public/stylesheets/new-story.css
         script: include ../public/javascripts/index.js
         title Groovium
@@ -18,7 +18,7 @@ html(lang="en")
                 a(href="/users"): img(src='/logos/logo.png')
             if authenticated
                 div
-                    a(href="/users/my-stories"): img(id="navBM" src="/logos/bookmark_add_black_24dp 7.png")
+                    a(class="aNoUnderline profileAnchor" href="/users/my-stories") My Profile
                     a(class="anchorNoUnderline log" href="/logout") Log out
             else
                 div
@@ -30,7 +30,7 @@ html(lang="en")
                     div.publish-container-inner-sign-up
                         img(class="publish-peace-image" width="162" height="36" src="/logos/peace-sign-logo.png", alt="a sign of peace")
                         h2 Edit Your Story
-                        div.publish-wrapper
+                        div.form-wrapper
                             form(method="POST" action=`/users/my-stories/${story.id}/edit`)
                                 div.publish-input-div
                                     label(for="title") Story Title

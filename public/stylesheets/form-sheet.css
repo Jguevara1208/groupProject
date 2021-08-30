@@ -1,7 +1,8 @@
 body {
     margin: 0px;
-    overflow: hidden;
+    font-family: 'Montserrat Alternates';
 }
+
 
 nav {
     display: flex;
@@ -59,6 +60,7 @@ nav {
     justify-content: flex-start;
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+    font-size: smaller;
 }
 
 .form-container-inner-log-in{
@@ -73,7 +75,6 @@ nav {
 
 .form-container-center {
     width: 100%;
-
 }
 
 .form-page-center-div {
@@ -102,6 +103,7 @@ nav {
     align-items: center;
     margin-top: 35px;
     width: 80%;
+    color:rgba(0, 0, 0, 0.50)
 }
 
 input {
@@ -125,7 +127,9 @@ textarea {
     padding: 10px 27px;
     border-radius: 20px;
     border: none;
-    font-size: 12.5px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Montserrat Alternates';
 }
 
 .form-input-button-div {

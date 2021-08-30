@@ -9,14 +9,16 @@ block content
                         .user-home-header-level-one
                             .user-home-text-container
                                 p Your topics
+                            .user-home-text-right
+                                a(href="/topics") View All Topics
+                        .user-home-header-level-three
                             .user-home-header-topics-container
                                 each topic in user.likedTopics
                                     a(class="anchorNoUnderline splash-story-topic" href=`/topics/${topic.id}`)= topic.topic
-                            .user-home-text-right
-                                a(href="/topics") View All Topics
                         .user-home-header-level-two
                             .user-home-text-container
                                 p Following
+                        .user-home-header-level-four
                             .user-home-header-following-container
                                 each following in user.followings
                                     a.home-following-avatar-anchor(href=`/users/${following.id}`): .home-following-avatar-image(style=`background-image: url("${following.avatarUrl}")`)
@@ -39,6 +41,7 @@ block content
                                             p= story.date
                                             p=  '•'
                                             p= `${story.readTimeMinutes} min read`
+                                            p=  '•'
                                             a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
                                         .right-story-bookmark-info
                                             if story.bookmarked
@@ -51,7 +54,7 @@ block content
                 .user-home-right
                     .user-home-header-right
                         .user-home-header-text-right
-                            a(class="aNoUnderline" href="/users/my-stories") My Profile
+                            a(class="aNoUnderline profileAnchor" href="/users/my-stories") My Profile
                         a(href="/users/my-stories"): .my-avatar-image(style=`background-image: url('https://i.pinimg.com/originals/ff/75/88/ff75888cb867d4c7ff3a8c1e4fee6795.jpg')`)
                         .div-for-line
                             a(class="aNoUnderLine write" href=`/users/my-stories/new`): .start-writing-button-container Start Writing

@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    word-break: normal;
     font-weight: 300;
     color: rgba(0,0,0,.45);
     width: 33%;
@@ -168,4 +169,15 @@
     font-size: 23px;
     color: D76735;
     cursor: pointer;
+}
+
+.other-profiles-content-right {
+    width: 80%;
+}
+
+@media screen and (max-width: 619px) {
+    .other-profiles-avatar-img {
+        width: 100px;
+        height: 100px;
+    }
 }

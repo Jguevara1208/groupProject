@@ -27,6 +27,7 @@ block content
                                                 p= story.date
                                                 p=  '•'
                                                 p= `${story.readTimeMinutes} min read`
+                                                p=  '•'
                                                 a(class="splash-story-topic" href=`/topics/${story.topicId}`)= story.topic
                                             .right-story-bookmark-info 
                                                 a(href=`/users/my-stories/${story.id}/edit`): i(class="far fa-edit")

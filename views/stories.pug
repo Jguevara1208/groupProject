@@ -31,7 +31,10 @@ block content
                         else 
                           i(id=`likes-${story.id}` class="fas fa-thumbs-up")
                       .story-page-bookmark
-                        a(href="/bookmarks"): i(class="far fa-bookmark")
+                        if bookmarked
+                          i(id=`story-${story.id}` class="fas fa-bookmark")
+                        else
+                          i(id=`story-${story.id}` class="far fa-bookmark")
               .story-page-content-left 
                 .story-page-story-div
                   .story-page-story-photo(style=`background-image: url('${story.storyImgUrl}')`)

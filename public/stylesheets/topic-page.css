@@ -6,24 +6,24 @@
 
 .topic-page-outer-most-container{
   display: flex;
-  width: 80%;
+  justify-content: center;
+  width: 100%;
 }
 
 .topic-left-side-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%;
-  margin-top: 80px;
+  width: 25%;
+
   border-right:1px solid rgba(0, 0, 0, 0.25);
 }
 
 .topic-main-content-container {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  width: 75%;
-  margin-left: 30px;
+  align-items: center;
+  width: 50%;
 }
 
 .topic-name-and-description-container {
@@ -31,6 +31,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 110px;
   width: 80%;
 }
 
@@ -57,13 +58,7 @@
 
 .topic-description-container {
   text-align: center;
-  font-style: normal;
-  font-weight: normal;
-  line-height: normal;
-  letter-spacing: 0.06em;
-  background-color: white;
   width: 80%;
-
 }
 .story-summary-container{
   text-align: center;
@@ -75,24 +70,23 @@
 }
 
 .topic-story-summary {
-  text-align: center;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: normal;
-  letter-spacing: 0.06em;
+  width: 90%;
+}
+
+.topic-story-summary > p {
+  margin: 5px;
 }
 
 .story-footnotes{
   border-bottom: 0.3px solid rgba(0, 0, 0, 0.25);
 }
+
 .topic-title-and-image-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width:90%;
   text-align: center;
-  border-bottom: 0.3px solid rgba(0, 0, 0, 0.25);
   margin-bottom: 60px;
   margin-top: 60px;
 }
@@ -105,20 +99,11 @@
   background-position: center;
 }
 
-/* .topic-followers-container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 10%;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-} */
-
 .topic-stories-list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 80%;
   padding-bottom: 10px;
 }
 
@@ -126,6 +111,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 20px;
 }
 .topic-followers-and-other-topics {
   display: flex;
@@ -146,8 +132,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 600px;
-  height: 145px;
+  width: 100%;
+  max-width: 827px;
   padding: 20px 10px;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 5%);
   margin-top: 5px;
@@ -196,3 +182,4 @@
 #all-topics {
   color: rgba(0, 0, 0, 0.46)
 }
+

@@ -31,3 +31,7 @@ nav {
     border: none;
     margin-left: 20px;
 }
+
+.profileAnchor { 
+    color: white !important;
+}

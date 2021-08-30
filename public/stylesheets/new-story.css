@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 800px;
     align-items: center;
     justify-content: flex-start;
     background-color: white;
@@ -59,8 +58,9 @@
 .publish-input-div {
     display: flex;
     flex-direction: column;
-    margin: 10px 0px;
+    margin-top: 60px;
     text-align: center;
+    align-items: center;
 }
 
 .publish-wrapper {
@@ -115,4 +115,22 @@ publish > .publish-input-div > p {
     height: 200px;
     border: none;
     border-bottom: 1px solid black;
+}
+
+#cancel-publish-button {
+    color:#D76735;
+    margin-bottom: 20px;    
+}
+
+select {
+    width: 30%;
+    font-family: 'Montserrat Alternates';
+    border: none;
+    border-bottom: 1px solid grey;
+}
+
+.publish-submit-button {
+    font-family: 'Montserrat Alternates';
+    font-weight: 500;
+    
 }
