@@ -254,7 +254,12 @@ router.get('/my-stories/:storyId/edit', asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId;
     const story = await Story.findByPk(storyId)
     const topics = await Topic.findAll()
-    res.render('edit-story', { topics, story })
+
+    if (story.userId !== userId) {
+        res.redirect('/users/')
+    } else {
+        res.render('edit-story', { topics, story })
+    }
   }));
 
   router.post('/my-stories/:storyId/edit', asyncHandler(async(req, res) => {
